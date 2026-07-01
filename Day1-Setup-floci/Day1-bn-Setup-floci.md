@@ -31,6 +31,10 @@ irm https://floci.io/install.ps1 | iex
 floci start --persist ./floci-data; floci env | Invoke-Expression
 ```
 
+```bash
+floci start --persist ./floci-data && eval "$(floci env)"
+```
+
 > **`--persist ./floci-data` কেন দিলাম?**
 > Floci default-এ memory-তে চলে — বন্ধ করলেই সব data (S3 bucket, IAM user, ইত্যাদি) মুছে যায়।
 > এই flag দিলে `floci-data` folder-এ সব data save থাকে, পরের session-এও পাওয়া যাবে।
@@ -71,8 +75,11 @@ export AWS_DEFAULT_REGION="us-east-1"
 ## ধাপ ৫: Variable ও Connection যাচাই করুন
 
 ```bash
-echo $env:AWS_ENDPOINT_URL
-echo $env:AWS_ACCESS_KEY_ID
+# Correct way to echo variables in Git Bash
+echo $AWS_ENDPOINT_URL
+echo $AWS_ACCESS_KEY_ID
+echo $AWS_SECRET_ACCESS_KEY
+echo $AWS_DEFAULT_REGION
 ```
 
 প্রত্যাশিত output:

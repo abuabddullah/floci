@@ -20,27 +20,6 @@
     },
     "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
   },
-  "000000000000/arn:aws:iam::aws:policy/AmazonEKSServicePolicy" : {
-    "policyId" : "ANPAMJN4E7ZZFKH0M3KA",
-    "policyName" : "AmazonEKSServicePolicy",
-    "path" : "/",
-    "arn" : "arn:aws:iam::aws:policy/AmazonEKSServicePolicy",
-    "description" : "This policy allows Amazon Elastic Container Service for Kubernetes to create and manage the necessary resources to operate EKS Clusters.",
-    "defaultVersionId" : "v1",
-    "attachmentCount" : 0,
-    "createDate" : "2026-07-01T14:14:12.466222225Z",
-    "updateDate" : "2026-07-01T14:14:12.466222225Z",
-    "tags" : { },
-    "versions" : {
-      "v1" : {
-        "versionId" : "v1",
-        "document" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}",
-        "defaultVersion" : true,
-        "createDate" : "2026-07-01T14:14:12.466222225Z"
-      }
-    },
-    "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
-  },
   "000000000000/arn:aws:iam::aws:policy/CloudWatchLambdaApplicationSignalsExecutionRolePolicy" : {
     "policyId" : "ANPA32VX9V2799WYPTKS",
     "policyName" : "CloudWatchLambdaApplicationSignalsExecutionRolePolicy",
@@ -62,23 +41,23 @@
     },
     "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
   },
-  "000000000000/arn:aws:iam::aws:policy/AWS-SSM-DiagnosisAutomation-ExecutionRolePolicy" : {
-    "policyId" : "ANPAB7AYX53I5K3948F8",
-    "policyName" : "AWS-SSM-DiagnosisAutomation-ExecutionRolePolicy",
+  "000000000000/arn:aws:iam::aws:policy/AmazonEKSServicePolicy" : {
+    "policyId" : "ANPAMJN4E7ZZFKH0M3KA",
+    "policyName" : "AmazonEKSServicePolicy",
     "path" : "/",
-    "arn" : "arn:aws:iam::aws:policy/AWS-SSM-DiagnosisAutomation-ExecutionRolePolicy",
-    "description" : "Provides permissions for AWS Systems Manager diagnosis automation execution.",
+    "arn" : "arn:aws:iam::aws:policy/AmazonEKSServicePolicy",
+    "description" : "This policy allows Amazon Elastic Container Service for Kubernetes to create and manage the necessary resources to operate EKS Clusters.",
     "defaultVersionId" : "v1",
     "attachmentCount" : 0,
-    "createDate" : "2026-07-01T14:14:12.466263728Z",
-    "updateDate" : "2026-07-01T14:14:12.466263828Z",
+    "createDate" : "2026-07-01T14:14:12.466222225Z",
+    "updateDate" : "2026-07-01T14:14:12.466222225Z",
     "tags" : { },
     "versions" : {
       "v1" : {
         "versionId" : "v1",
         "document" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}",
         "defaultVersion" : true,
-        "createDate" : "2026-07-01T14:14:12.466263828Z"
+        "createDate" : "2026-07-01T14:14:12.466222225Z"
       }
     },
     "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
@@ -104,6 +83,27 @@
     },
     "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
   },
+  "000000000000/arn:aws:iam::aws:policy/AWS-SSM-DiagnosisAutomation-ExecutionRolePolicy" : {
+    "policyId" : "ANPAB7AYX53I5K3948F8",
+    "policyName" : "AWS-SSM-DiagnosisAutomation-ExecutionRolePolicy",
+    "path" : "/",
+    "arn" : "arn:aws:iam::aws:policy/AWS-SSM-DiagnosisAutomation-ExecutionRolePolicy",
+    "description" : "Provides permissions for AWS Systems Manager diagnosis automation execution.",
+    "defaultVersionId" : "v1",
+    "attachmentCount" : 0,
+    "createDate" : "2026-07-01T14:14:12.466263728Z",
+    "updateDate" : "2026-07-01T14:14:12.466263828Z",
+    "tags" : { },
+    "versions" : {
+      "v1" : {
+        "versionId" : "v1",
+        "document" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}",
+        "defaultVersion" : true,
+        "createDate" : "2026-07-01T14:14:12.466263828Z"
+      }
+    },
+    "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
+  },
   "000000000000/arn:aws:iam::aws:policy/service-role/AmazonRDSEnhancedMonitoringRole" : {
     "policyId" : "ANPAO53EAL80JZMB0NUZ",
     "policyName" : "AmazonRDSEnhancedMonitoringRole",
@@ -125,27 +125,6 @@
     },
     "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
   },
-  "000000000000/arn:aws:iam::aws:policy/AmazonElasticFileSystemClientFullAccess" : {
-    "policyId" : "ANPAGK8CC028E9S0JA2M",
-    "policyName" : "AmazonElasticFileSystemClientFullAccess",
-    "path" : "/",
-    "arn" : "arn:aws:iam::aws:policy/AmazonElasticFileSystemClientFullAccess",
-    "description" : "Provides root client access to an Amazon EFS file system.",
-    "defaultVersionId" : "v1",
-    "attachmentCount" : 0,
-    "createDate" : "2026-07-01T14:14:12.466188723Z",
-    "updateDate" : "2026-07-01T14:14:12.466188823Z",
-    "tags" : { },
-    "versions" : {
-      "v1" : {
-        "versionId" : "v1",
-        "document" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}",
-        "defaultVersion" : true,
-        "createDate" : "2026-07-01T14:14:12.466188823Z"
-      }
-    },
-    "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
-  },
   "000000000000/arn:aws:iam::aws:policy/service-role/SageMakerStudioBedrockFunctionExecutionRolePolicy" : {
     "policyId" : "ANPA411BWI4TZW1WGJY0",
     "policyName" : "SageMakerStudioBedrockFunctionExecutionRolePolicy",
@@ -163,6 +142,27 @@
         "document" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}",
         "defaultVersion" : true,
         "createDate" : "2026-07-01T14:14:12.466269428Z"
+      }
+    },
+    "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
+  },
+  "000000000000/arn:aws:iam::aws:policy/AmazonElasticFileSystemClientFullAccess" : {
+    "policyId" : "ANPAGK8CC028E9S0JA2M",
+    "policyName" : "AmazonElasticFileSystemClientFullAccess",
+    "path" : "/",
+    "arn" : "arn:aws:iam::aws:policy/AmazonElasticFileSystemClientFullAccess",
+    "description" : "Provides root client access to an Amazon EFS file system.",
+    "defaultVersionId" : "v1",
+    "attachmentCount" : 0,
+    "createDate" : "2026-07-01T14:14:12.466188723Z",
+    "updateDate" : "2026-07-01T14:14:12.466188823Z",
+    "tags" : { },
+    "versions" : {
+      "v1" : {
+        "versionId" : "v1",
+        "document" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}",
+        "defaultVersion" : true,
+        "createDate" : "2026-07-01T14:14:12.466188823Z"
       }
     },
     "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
@@ -293,27 +293,6 @@
     },
     "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
   },
-  "000000000000/arn:aws:iam::aws:policy/AWSXRayDaemonWriteAccess" : {
-    "policyId" : "ANPACEQTSD2NXRWMC2MZ",
-    "policyName" : "AWSXRayDaemonWriteAccess",
-    "path" : "/",
-    "arn" : "arn:aws:iam::aws:policy/AWSXRayDaemonWriteAccess",
-    "description" : "Allows write permissions to the AWS X-Ray daemon.",
-    "defaultVersionId" : "v1",
-    "attachmentCount" : 0,
-    "createDate" : "2026-07-01T14:14:12.466187823Z",
-    "updateDate" : "2026-07-01T14:14:12.466187923Z",
-    "tags" : { },
-    "versions" : {
-      "v1" : {
-        "versionId" : "v1",
-        "document" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}",
-        "defaultVersion" : true,
-        "createDate" : "2026-07-01T14:14:12.466187923Z"
-      }
-    },
-    "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
-  },
   "000000000000/arn:aws:iam::aws:policy/AdministratorAccess" : {
     "policyId" : "ANPALEDMSWQ9O9G3NK8H",
     "policyName" : "AdministratorAccess",
@@ -331,6 +310,27 @@
         "document" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}",
         "defaultVersion" : true,
         "createDate" : "2026-07-01T14:14:12.466108219Z"
+      }
+    },
+    "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
+  },
+  "000000000000/arn:aws:iam::aws:policy/AWSXRayDaemonWriteAccess" : {
+    "policyId" : "ANPACEQTSD2NXRWMC2MZ",
+    "policyName" : "AWSXRayDaemonWriteAccess",
+    "path" : "/",
+    "arn" : "arn:aws:iam::aws:policy/AWSXRayDaemonWriteAccess",
+    "description" : "Allows write permissions to the AWS X-Ray daemon.",
+    "defaultVersionId" : "v1",
+    "attachmentCount" : 0,
+    "createDate" : "2026-07-01T14:14:12.466187823Z",
+    "updateDate" : "2026-07-01T14:14:12.466187923Z",
+    "tags" : { },
+    "versions" : {
+      "v1" : {
+        "versionId" : "v1",
+        "document" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}",
+        "defaultVersion" : true,
+        "createDate" : "2026-07-01T14:14:12.466187923Z"
       }
     },
     "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
