@@ -129,14 +129,16 @@ Make sure these are installed (from Day 1):
 
 Open a terminal and run:
 
-```bash
-floci start
+```powershell
+floci start --persist ./floci-data
 ```
 
 Expected output:
 ```
 ✓ Floci is running on http://localhost:4566
 ```
+
+> **Why `--persist ./floci-data`?** Without this flag, all IAM users, groups, roles, and policies are erased when Floci stops. This flag saves everything in the `floci-data` folder so your work survives between sessions.
 
 ---
 
