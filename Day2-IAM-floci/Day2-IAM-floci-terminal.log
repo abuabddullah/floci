@@ -1,0 +1,393 @@
+====================================
+Tutorial Started
+
+Time:               2026-07-02 04:14:12
+Working Directory:  /d/devops/floci
+Git Branch:         feat/day-2
+Log File:           /d/devops/floci/Day2-IAM-floci/Day2-IAM-floci-terminal.log
+====================================
+
+
+$ aws iam create-user --user-name dev-user
+{
+    "User": {
+        "Path": "/",
+        "UserName": "dev-user",
+        "UserId": "AIDAHBW8JE7WZ024IA4Z",
+        "Arn": "arn:aws:iam::000000000000:user/dev-user",
+        "CreateDate": "2026-07-01T22:15:51.284254+00:00"
+    }
+}
+
+$ aws iam create-user --user-name admin-user
+{
+    "User": {
+        "Path": "/",
+        "UserName": "admin-user",
+        "UserId": "AIDAXIOO4JKQLC4ZIVRQ",
+        "Arn": "arn:aws:iam::000000000000:user/admin-user",
+        "CreateDate": "2026-07-01T22:16:18.882899+00:00"
+    }
+}
+
+$ aws iam create-user --user-name readonly-user
+{
+    "User": {
+        "Path": "/",
+        "UserName": "readonly-user",
+        "UserId": "AIDAQKO7DIZ2KNLDAAD3",
+        "Arn": "arn:aws:iam::000000000000:user/readonly-user",
+        "CreateDate": "2026-07-01T22:16:20.317458+00:00"
+    }
+}
+
+$ aws iam list-users
+{
+    "Users": [
+        {
+            "Path": "/",
+            "UserName": "admin-user",
+            "UserId": "AIDAXIOO4JKQLC4ZIVRQ",
+            "Arn": "arn:aws:iam::000000000000:user/admin-user",
+            "CreateDate": "2026-07-01T22:16:18.882899+00:00"
+        },
+        {
+            "Path": "/",
+            "UserName": "readonly-user",
+            "UserId": "AIDAQKO7DIZ2KNLDAAD3",
+            "Arn": "arn:aws:iam::000000000000:user/readonly-user",
+            "CreateDate": "2026-07-01T22:16:20.317458+00:00"
+        },
+        {
+            "Path": "/",
+            "UserName": "dev-user",
+            "UserId": "AIDAHBW8JE7WZ024IA4Z",
+            "Arn": "arn:aws:iam::000000000000:user/dev-user",
+            "CreateDate": "2026-07-01T22:15:51.284254+00:00"
+        }
+    ]
+}
+
+$ aws iam create-group --group-name Developers
+{
+    "Group": {
+        "Path": "/",
+        "GroupName": "Developers",
+        "GroupId": "AGPA5PCY40KX7VGFB0MO",
+        "Arn": "arn:aws:iam::000000000000:group/Developers",
+        "CreateDate": "2026-07-01T22:17:09.964279+00:00"
+    }
+}
+
+$ aws iam create-group --group-name Admins
+{
+    "Group": {
+        "Path": "/",
+        "GroupName": "Admins",
+        "GroupId": "AGPAC935SAJ3GV06AOA8",
+        "Arn": "arn:aws:iam::000000000000:group/Admins",
+        "CreateDate": "2026-07-01T22:17:20.541600+00:00"
+    }
+}
+
+$ aws iam create-group --group-name ReadOnlyUsers
+{
+    "Group": {
+        "Path": "/",
+        "GroupName": "ReadOnlyUsers",
+        "GroupId": "AGPAYC78WZ7B311YXNOF",
+        "Arn": "arn:aws:iam::000000000000:group/ReadOnlyUsers",
+        "CreateDate": "2026-07-01T22:17:22.150852+00:00"
+    }
+}
+
+$ aws iam list-groups
+{
+    "Groups": [
+        {
+            "Path": "/",
+            "GroupName": "Admins",
+            "GroupId": "AGPAC935SAJ3GV06AOA8",
+            "Arn": "arn:aws:iam::000000000000:group/Admins",
+            "CreateDate": "2026-07-01T22:17:20.541600+00:00"
+        },
+        {
+            "Path": "/",
+            "GroupName": "Developers",
+            "GroupId": "AGPA5PCY40KX7VGFB0MO",
+            "Arn": "arn:aws:iam::000000000000:group/Developers",
+            "CreateDate": "2026-07-01T22:17:09.964279+00:00"
+        },
+        {
+            "Path": "/",
+            "GroupName": "ReadOnlyUsers",
+            "GroupId": "AGPAYC78WZ7B311YXNOF",
+            "Arn": "arn:aws:iam::000000000000:group/ReadOnlyUsers",
+            "CreateDate": "2026-07-01T22:17:22.150852+00:00"
+        }
+    ]
+}
+
+$ cat s3-readonly-policy.json
+cat: s3-readonly-policy.json: No such file or directory
+
+$ cat Day2-IAM-floci/s3-readonly-policy.json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "S3ReadOnlyAccess",
+      "Effect": "Allow",
+      "Action": ["s3:GetObject", "s3:ListBucket", "s3:GetBucketLocation"],
+      "Resource": "*"
+    }
+  ]
+}
+
+$ aws iam create-policy   --policy-name S3ReadOnlyPolicy   --policy-document file://s3-readonly-policy.json
+
+Error parsing parameter '--policy-document': Unable to load paramfile file://s3-readonly-policy.json: [Errno 2] No such file or directory: 's3-readonly-policy.json'
+
+$ cd Day2-IAM-floci/
+
+$ aws iam create-policy   --policy-name S3ReadOnlyPolicy   --policy-document file://s3-readonly-policy.json
+{
+    "Policy": {
+        "PolicyName": "S3ReadOnlyPolicy",
+        "PolicyId": "ANPAYE4BUISXLK20B0WG",
+        "Arn": "arn:aws:iam::000000000000:policy/S3ReadOnlyPolicy",
+        "Path": "/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "IsAttachable": true,
+        "CreateDate": "2026-07-01T22:21:01.331428+00:00",
+        "UpdateDate": "2026-07-01T22:21:01.331429+00:00"
+    }
+}
+
+$ echo "ARN =arn:aws:iam::000000000000:policy/S3ReadOnlyPolicy" > cred.txt
+
+$ cat cred.txt 
+ARN =arn:aws:iam::000000000000:policy/S3ReadOnlyPolicy
+
+$ aws iam list-policies --scope Local
+{
+    "Policies": [
+        {
+            "PolicyName": "S3ReadOnlyPolicy",
+            "PolicyId": "ANPAYE4BUISXLK20B0WG",
+            "Arn": "arn:aws:iam::000000000000:policy/S3ReadOnlyPolicy",
+            "Path": "/",
+            "DefaultVersionId": "v1",
+            "AttachmentCount": 0,
+            "IsAttachable": true,
+            "CreateDate": "2026-07-01T22:21:01.331428+00:00",
+            "UpdateDate": "2026-07-01T22:21:01.331429+00:00"
+        }
+    ]
+}
+
+$ aws iam attach-group-policy   --group-name ReadOnlyUsers   --policy-arn arn:aws:iam::000000000000:policy/S3ReadOnlyPolicy
+
+$ aws iam attach-group-policy   --group-name Developers   --policy-arn arn:aws:iam::aws:policy/AmazonEC2FullAccess
+
+$ aws iam attach-group-policy   --group-name Admins   --policy-arn arn:aws:iam::aws:policy/AdministratorAccess
+
+$ aws iam list-attached-group-policies --group-name Developers
+{
+    "AttachedPolicies": [
+        {
+            "PolicyName": "AmazonEC2FullAccess",
+            "PolicyArn": "arn:aws:iam::aws:policy/AmazonEC2FullAccess"
+        }
+    ]
+}
+
+$ aws iam list-attached-group-policies --group-name ReadOnlyUsers
+{
+    "AttachedPolicies": [
+        {
+            "PolicyName": "S3ReadOnlyPolicy",
+            "PolicyArn": "arn:aws:iam::000000000000:policy/S3ReadOnlyPolicy"
+        }
+    ]
+}
+
+$ aws iam add-user-to-group --group-name Developers    --user-name dev-user
+
+$ aws iam add-user-to-group --group-name Admins        --user-name admin-user
+
+$ aws iam add-user-to-group --group-name ReadOnlyUsers --user-name readonly-user
+
+$ aws iam get-group --group-name Developers
+{
+    "Users": [
+        {
+            "Path": "/",
+            "UserName": "dev-user",
+            "UserId": "AIDAHBW8JE7WZ024IA4Z",
+            "Arn": "arn:aws:iam::000000000000:user/dev-user",
+            "CreateDate": "2026-07-01T22:15:51.284254+00:00"
+        }
+    ],
+    "Group": {
+        "Path": "/",
+        "GroupName": "Developers",
+        "GroupId": "AGPA5PCY40KX7VGFB0MO",
+        "Arn": "arn:aws:iam::000000000000:group/Developers",
+        "CreateDate": "2026-07-01T22:17:09.964279+00:00"
+    }
+}
+
+$ aws iam list-groups-for-user --user-name dev-user
+{
+    "Groups": [
+        {
+            "Path": "/",
+            "GroupName": "Developers",
+            "GroupId": "AGPA5PCY40KX7VGFB0MO",
+            "Arn": "arn:aws:iam::000000000000:group/Developers",
+            "CreateDate": "2026-07-01T22:17:09.964279+00:00"
+        }
+    ]
+}
+
+$ aws iam attach-user-policy   --user-name dev-user   --policy-arn arn:aws:iam::000000000000:policy/S3ReadOnlyPolicy
+
+$ aws iam list-attached-user-policies --user-name dev-user
+{
+    "AttachedPolicies": [
+        {
+            "PolicyName": "S3ReadOnlyPolicy",
+            "PolicyArn": "arn:aws:iam::000000000000:policy/S3ReadOnlyPolicy"
+        }
+    ]
+}
+
+$ aws iam create-access-key --user-name dev-user
+{
+    "AccessKey": {
+        "UserName": "dev-user",
+        "AccessKeyId": "AKIA41M9ZFGWW4HD2BLK",
+        "Status": "Active",
+        "SecretAccessKey": "Tp8pxVdHcQFpRRrT49Y4vdRGM6Fju33STC+Pboue",
+        "CreateDate": "2026-07-01T22:24:40.781197+00:00"
+    }
+}
+
+$ aws iam list-access-keys --user-name dev-user
+{
+    "AccessKeyMetadata": [
+        {
+            "UserName": "dev-user",
+            "AccessKeyId": "AKIA41M9ZFGWW4HD2BLK",
+            "Status": "Active",
+            "CreateDate": "2026-07-01T22:24:40.781197+00:00"
+        }
+    ]
+}
+
+$ cat ec2-trust-policy.json 
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "ec2.amazonaws.com"
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+
+$ aws iam create-role   --role-name EC2-S3-Access-Role   --assume-role-policy-document file://ec2-trust-policy.json
+{
+    "Role": {
+        "Path": "/",
+        "RoleName": "EC2-S3-Access-Role",
+        "RoleId": "AROAP4CYEI9VBHTMZIKC",
+        "Arn": "arn:aws:iam::000000000000:role/EC2-S3-Access-Role",
+        "CreateDate": "2026-07-01T22:26:00.879025+00:00",
+        "AssumeRolePolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Effect": "Allow",
+                    "Principal": {
+                        "Service": "ec2.amazonaws.com"
+                    },
+                    "Action": "sts:AssumeRole"
+                }
+            ]
+        },
+        "MaxSessionDuration": 3600
+    }
+}
+
+$ aws iam attach-role-policy   --role-name EC2-S3-Access-Role   --policy-arn arn:aws:iam::000000000000:policy/S3ReadOnlyPolicy
+
+$ aws iam list-roles
+{
+    "Roles": [
+        {
+            "Path": "/",
+            "RoleName": "EC2-S3-Access-Role",
+            "RoleId": "AROAP4CYEI9VBHTMZIKC",
+            "Arn": "arn:aws:iam::000000000000:role/EC2-S3-Access-Role",
+            "CreateDate": "2026-07-01T22:26:00.879025+00:00",
+            "AssumeRolePolicyDocument": {
+                "Version": "2012-10-17",
+                "Statement": [
+                    {
+                        "Effect": "Allow",
+                        "Principal": {
+                            "Service": "ec2.amazonaws.com"
+                        },
+                        "Action": "sts:AssumeRole"
+                    }
+                ]
+            },
+            "MaxSessionDuration": 3600
+        }
+    ]
+}
+
+$ aws iam list-attached-role-policies --role-name EC2-S3-Access-Role
+{
+    "AttachedPolicies": [
+        {
+            "PolicyName": "S3ReadOnlyPolicy",
+            "PolicyArn": "arn:aws:iam::000000000000:policy/S3ReadOnlyPolicy"
+        }
+    ]
+}
+
+$ aws sts assume-role   --role-arn arn:aws:iam::000000000000:role/EC2-S3-Access-Role   --role-session-name my-test-session
+{
+    "Credentials": {
+        "AccessKeyId": "ASIAJF629X8LB2JS1M2A",
+        "SecretAccessKey": "hZXJdkPofcCKXxus7HiJjzXvwv7Kqw5UnoORK59X",
+        "SessionToken": "LJb9d0N1Jsi2tA2tsmpw0DlIYfa5P8vT6Z3CZGufhSd1WHlSMdfknlHUQ0cdiLjYDEO3rSSFCHRPqp9YkzzPEiXQJKaERTpsSCfvFGNjePB1XDd8UTlVvObCOc4xqtunOX1naLWPEeFPmBjZ4pfVIilTbb6WAQZTiHrzKcCtcSCe4iQjfh2ytcYdCDHb11bis1M03Q1U",
+        "Expiration": "2026-07-01T23:27:37.237071+00:00"
+    },
+    "AssumedRoleUser": {
+        "AssumedRoleId": "AROA3TNIP036XZS400OO:my-test-session",
+        "Arn": "arn:aws:sts::000000000000:assumed-role/EC2-S3-Access-Role/my-test-session"
+    },
+    "PackedPolicySize": 0
+}
+
+$ aws sts get-caller-identity
+{
+    "UserId": "000000000000",
+    "Account": "000000000000",
+    "Arn": "arn:aws:iam::000000000000:root"
+}
+
+$ stoplog
+
+====================================
+Tutorial Finished
+Time: 2026-07-02 04:29:21
+====================================

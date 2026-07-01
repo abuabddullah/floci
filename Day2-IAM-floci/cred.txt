@@ -1,0 +1,1 @@
+ARN =arn:aws:iam::000000000000:policy/S3ReadOnlyPolicy

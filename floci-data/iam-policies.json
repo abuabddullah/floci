@@ -1,4 +1,25 @@
 {
+  "000000000000/arn:aws:iam::000000000000:policy/S3ReadOnlyPolicy" : {
+    "policyId" : "ANPAYE4BUISXLK20B0WG",
+    "policyName" : "S3ReadOnlyPolicy",
+    "path" : "/",
+    "arn" : "arn:aws:iam::000000000000:policy/S3ReadOnlyPolicy",
+    "description" : null,
+    "defaultVersionId" : "v1",
+    "attachmentCount" : 3,
+    "createDate" : "2026-07-01T22:21:01.331428513Z",
+    "updateDate" : "2026-07-01T22:21:01.331429913Z",
+    "tags" : { },
+    "versions" : {
+      "v1" : {
+        "versionId" : "v1",
+        "document" : "{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Sid\": \"S3ReadOnlyAccess\",\n      \"Effect\": \"Allow\",\n      \"Action\": [\"s3:GetObject\", \"s3:ListBucket\", \"s3:GetBucketLocation\"],\n      \"Resource\": \"*\"\n    }\n  ]\n}\n",
+        "defaultVersion" : true,
+        "createDate" : "2026-07-01T22:21:01.331430013Z"
+      }
+    },
+    "defaultDocument" : "{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Sid\": \"S3ReadOnlyAccess\",\n      \"Effect\": \"Allow\",\n      \"Action\": [\"s3:GetObject\", \"s3:ListBucket\", \"s3:GetBucketLocation\"],\n      \"Resource\": \"*\"\n    }\n  ]\n}\n"
+  },
   "000000000000/arn:aws:iam::aws:policy/service-role/AWSLambdaDynamoDBExecutionRole" : {
     "policyId" : "ANPAQF19JCMFZ8ZN8PKK",
     "policyName" : "AWSLambdaDynamoDBExecutionRole",
@@ -321,7 +342,7 @@
     "arn" : "arn:aws:iam::aws:policy/AdministratorAccess",
     "description" : "Provides full access to AWS services and resources.",
     "defaultVersionId" : "v1",
-    "attachmentCount" : 0,
+    "attachmentCount" : 1,
     "createDate" : "2026-07-01T22:00:13.556359839Z",
     "updateDate" : "2026-07-01T22:00:13.556360539Z",
     "tags" : { },
@@ -573,7 +594,7 @@
     "arn" : "arn:aws:iam::aws:policy/AmazonEC2FullAccess",
     "description" : "Provides full access to Amazon EC2 via the AWS Management Console.",
     "defaultVersionId" : "v1",
-    "attachmentCount" : 0,
+    "attachmentCount" : 1,
     "createDate" : "2026-07-01T22:00:13.556432643Z",
     "updateDate" : "2026-07-01T22:00:13.556432643Z",
     "tags" : { },
