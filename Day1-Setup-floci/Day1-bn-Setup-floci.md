@@ -6,8 +6,8 @@
 
 ## ধাপ ১: PowerShell রান করুন
 
-* Windows Start Menu থেকে PowerShell সার্চ করুন।
-* ডান ক্লিক করে "Run as Administrator" হিসেবে ওপেন করুন।
+- Windows Start Menu থেকে PowerShell সার্চ করুন।
+- ডান ক্লিক করে "Run as Administrator" হিসেবে ওপেন করুন।
 
 ---
 
@@ -46,6 +46,7 @@ floci status
 ```
 
 প্রত্যাশিত output:
+
 ```
 Floci is healthy
 ```
@@ -56,11 +57,11 @@ Floci is healthy
 
 Windows-এ local AWS connection-এর জন্য নিচের ৪টি লাইন একসাথে কপি করে PowerShell-এ paste করুন এবং Enter চাপুন:
 
-```powershell
-$env:AWS_ENDPOINT_URL="http://localhost:4566"
-$env:AWS_ACCESS_KEY_ID="test"
-$env:AWS_SECRET_ACCESS_KEY="test"
-$env:AWS_DEFAULT_REGION="us-east-1"
+```bash
+export AWS_ENDPOINT_URL="http://localhost:4566"
+export AWS_ACCESS_KEY_ID="test"
+export AWS_SECRET_ACCESS_KEY="test"
+export AWS_DEFAULT_REGION="us-east-1"
 ```
 
 > **গুরুত্বপূর্ণ:** PowerShell window বন্ধ করলে এই variable গুলো হারিয়ে যাবে। নতুন session-এ এসে আবার set করতে হবে।
@@ -69,12 +70,13 @@ $env:AWS_DEFAULT_REGION="us-east-1"
 
 ## ধাপ ৫: Variable ও Connection যাচাই করুন
 
-```powershell
+```bash
 echo $env:AWS_ENDPOINT_URL
 echo $env:AWS_ACCESS_KEY_ID
 ```
 
 প্রত্যাশিত output:
+
 ```
 http://localhost:4566
 test
@@ -87,27 +89,35 @@ test
 এখন local cloud সম্পূর্ণ প্রস্তুত। নিচের কমান্ডগুলো একে একে রান করুন:
 
 **১. Local bucket তৈরি করুন:**
-```powershell
+
+```bash
 aws s3 mb s3://my-bucket
 ```
+
 আউটপুট: `make_bucket: my-bucket`
 
 **২. ফাইল তৈরি করুন:**
-```powershell
-"Why pay for S3 when floci is free?" | Out-File hello-floci.txt
+
+```bash
+echo "Why pay for S3 when floci is free?" > hello-floci.txt
 ```
 
 **৩. Bucket-এ ফাইল আপলোড করুন:**
-```powershell
-aws s3 cp hello-floci.txt s3://my-bucket/
+
+```bash
+aws s3 cp Day1-Setup-floci/hello-floci.txt s3://my-bucket/
 ```
+
 আউটপুট: `upload: .\hello-floci.txt to s3://my-bucket/hello-floci.txt`
 
 **৪. Bucket থেকে ফাইল ডাউনলোড ও read করুন:**
-```powershell
-aws s3 cp s3://my-bucket/hello-floci.txt hello-back.txt; Get-Content hello-back.txt
+
+```bash
+aws s3 cp s3://my-bucket/hello-floci.txt Day1-Setup-floci/hello-back.txt; cat Day1-Setup-floci/hello-back.txt
 ```
+
 আউটপুট:
+
 ```
 Why pay for S3 when floci is free?
 ```
@@ -118,12 +128,12 @@ Why pay for S3 when floci is free?
 
 ## দরকারী কমান্ডসমূহ
 
-| কমান্ড | কী করে |
-|--------|--------|
+| কমান্ড                               | কী করে                        |
+| ------------------------------------ | ----------------------------- |
 | `floci start --persist ./floci-data` | Data save রেখে Floci চালু করে |
-| `floci stop` | Floci বন্ধ করে |
-| `floci status` | Floci চলছে কিনা দেখায় |
-| `floci logs --follow` | Real-time log দেখায় |
+| `floci stop`                         | Floci বন্ধ করে                |
+| `floci status`                       | Floci চলছে কিনা দেখায়        |
+| `floci logs --follow`                | Real-time log দেখায়          |
 
 ---
 

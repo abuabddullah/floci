@@ -1,0 +1,39 @@
+[2026-07-01 20:14:11] $ floci start --persist ./floci-data; floci env | Invoke-Expression
+[2026-07-01 20:14:12] $ floci start --persist ./floci-data; floci env | Invoke-Expression
+[2026-07-01 20:14:13] $ floci start --persist ./floci-data; floci env | Invoke-Expression
+[2026-07-01 20:14:13] $ floci start --persist ./floci-data; floci env | Invoke-Expression
+[2026-07-01 20:14:34] $ floci start --persist ./floci-data; floci env | Invoke-Expression
+[2026-07-01 20:14:35] $ floci status
+[2026-07-01 20:14:36] $ floci status
+[2026-07-01 20:14:45] $ $env:AWS_ENDPOINT_URL="http://localhost:4566"
+[2026-07-01 20:14:45] $ $env:AWS_ACCESS_KEY_ID="test"
+[2026-07-01 20:14:45] $ $env:AWS_SECRET_ACCESS_KEY="test"
+[2026-07-01 20:14:45] $ $env:AWS_DEFAULT_REGION="us-east-1"
+[2026-07-01 20:14:46] $ $env:AWS_DEFAULT_REGION="us-east-1"
+[2026-07-01 20:15:35] $ export AWS_ENDPOINT_URL="http://localhost:4566"
+[2026-07-01 20:15:35] $ export AWS_ACCESS_KEY_ID="test"
+[2026-07-01 20:15:35] $ export AWS_SECRET_ACCESS_KEY="test"
+[2026-07-01 20:15:35] $ export AWS_DEFAULT_REGION="us-east-1"   
+[2026-07-01 20:15:35] $ export AWS_DEFAULT_REGION="us-east-1"   
+[2026-07-01 20:16:10] $ echo $env:AWS_ENDPOINT_URL
+[2026-07-01 20:16:10] $ echo $env:AWS_ACCESS_KEY_ID   
+[2026-07-01 20:16:10] $ echo $env:AWS_ACCESS_KEY_ID   
+[2026-07-01 20:16:43] $ echo $AWS_ENDPOINT_URL
+[2026-07-01 20:16:43] $ echo $AWS_ACCESS_KEY_ID   
+[2026-07-01 20:16:43] $ echo $AWS_ACCESS_KEY_ID   
+[2026-07-01 20:17:08] $ aws s3 mb s3://my-bucket
+[2026-07-01 20:17:09] $ aws s3 mb s3://my-bucket
+[2026-07-01 20:18:05] $ echo "Why pay for S3 when floci is free?" > hello-floci.txt   
+[2026-07-01 20:18:05] $ echo "Why pay for S3 when floci is free?" > hello-floci.txt   
+[2026-07-01 20:18:38] $ echo "Why pay for S3 when floci is free?" > Day1-Setup-floci/hello-floci.txt   
+[2026-07-01 20:18:38] $ echo "Why pay for S3 when floci is free?" > Day1-Setup-floci/hello-floci.txt   
+[2026-07-01 20:19:05] $ aws s3 cp Day1-Setup-floci/hello-floci.txt s3://my-bucket/
+[2026-07-01 20:19:06] $ aws s3 cp Day1-Setup-floci/hello-floci.txt s3://my-bucket/
+[2026-07-01 20:19:39] $ aws s3 cp s3://my-bucket/hello-floci.txt hello-back.txt; cat Day1-Setup-floci/hello-back.txt
+[2026-07-01 20:19:40] $ aws s3 cp s3://my-bucket/hello-floci.txt hello-back.txt; cat Day1-Setup-floci/hello-back.txt
+[2026-07-01 20:19:40] $ aws s3 cp s3://my-bucket/hello-floci.txt hello-back.txt; cat Day1-Setup-floci/hello-back.txt
+[2026-07-01 20:21:15] $ aws s3 cp s3://my-bucket/hello-floci.txt hello-back.txt; cat Day1-Setup-floci/hello-back.txt
+[2026-07-01 20:21:15] $ aws s3 cp s3://my-bucket/hello-floci.txt hello-back.txt; cat Day1-Setup-floci/hello-back.txt
+[2026-07-01 20:21:16] $ aws s3 cp s3://my-bucket/hello-floci.txt Day1-Setup-floci/hello-back.txt; cat Day1-Setup-floci/hello-back.txt
+[2026-07-01 20:21:17] $ aws s3 cp s3://my-bucket/hello-floci.txt Day1-Setup-floci/hello-back.txt; cat Day1-Setup-floci/hello-back.txt
+[2026-07-01 20:21:17] $ aws s3 cp s3://my-bucket/hello-floci.txt Day1-Setup-floci/hello-back.txt; cat Day1-Setup-floci/hello-back.txt

@@ -1,0 +1,24 @@
+{
+  "000000000000/my-bucket" : {
+    "name" : "my-bucket",
+    "creationDate" : "2026-07-01T14:17:09.453407515Z",
+    "versioningStatus" : null,
+    "loggingConfiguration" : null,
+    "tags" : { },
+    "notificationConfiguration" : null,
+    "objectLockEnabled" : false,
+    "defaultRetention" : null,
+    "policy" : null,
+    "corsConfiguration" : null,
+    "lifecycleConfiguration" : null,
+    "transitionDefaultMinimumObjectSize" : null,
+    "acl" : null,
+    "encryptionConfiguration" : null,
+    "publicAccessBlockConfiguration" : null,
+    "ownershipControlsConfiguration" : null,
+    "requestPaymentPayer" : null,
+    "region" : "us-east-1",
+    "websiteConfiguration" : null,
+    "versioningEnabled" : false
+  }
+}

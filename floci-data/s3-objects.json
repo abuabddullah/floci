@@ -1,0 +1,35 @@
+{
+  "000000000000/my-bucket/hello-floci.txt" : {
+    "bucketName" : "my-bucket",
+    "key" : "hello-floci.txt",
+    "metadata" : { },
+    "contentType" : "text/plain",
+    "contentEncoding" : null,
+    "contentDisposition" : null,
+    "cacheControl" : null,
+    "serverSideEncryption" : null,
+    "sseCustomerAlgorithm" : null,
+    "sseCustomerKeyMd5" : null,
+    "size" : 35,
+    "lastModified" : "2026-07-01T14:19:06.204Z",
+    "storageClass" : "STANDARD",
+    "checksum" : {
+      "checksumCRC32" : null,
+      "checksumCRC32C" : null,
+      "checksumCRC64NVME" : "fpQMh5xi+vY=",
+      "checksumSHA1" : null,
+      "checksumSHA256" : null,
+      "checksumType" : "FULL_OBJECT"
+    },
+    "parts" : [ ],
+    "versionId" : null,
+    "deleteMarker" : false,
+    "tags" : { },
+    "objectLockMode" : null,
+    "retainUntilDate" : null,
+    "legalHoldStatus" : null,
+    "acl" : null,
+    "latest" : true,
+    "etag" : "\"3dfc07210026af0544da9224244d87cf\""
+  }
+}
