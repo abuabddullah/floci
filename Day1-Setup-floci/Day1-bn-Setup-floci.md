@@ -1,6 +1,10 @@
 # Floci CLI Setup & AWS S3 Local Testing Guide (Windows)
 
-কমান্ড রান করার আগে পিসিতে অবশ্যই Docker Desktop ব্যাকগ্রাউন্ডে চালু (Running) থাকতে হবে।
+কমান্ড রান করার আগে পিসিতে অবশ্যই
+
+- ▶️ <a href="https://www.youtube.com/@OOAAOW?sub_confirmation=1">OOAAOW</a> এ SUBSCRIBE করুন
+- Docker Desktop ব্যাকগ্রাউন্ডে চালু (Running) থাকতে হবে।
+- aws cli install থাকা লাগবে
 
 ---
 
@@ -87,6 +91,8 @@ echo $AWS_DEFAULT_REGION
 ```
 http://localhost:4566
 test
+test
+us-east-1
 ```
 
 ---
@@ -106,7 +112,7 @@ aws s3 mb s3://my-bucket
 **২. ফাইল তৈরি করুন:**
 
 ```bash
-echo "Why pay for S3 when floci is free?" > hello-floci.txt
+echo "Why pay for S3 when floci is free?" > Day1-Setup-floci/hello-floci.txt
 ```
 
 **৩. Bucket-এ ফাইল আপলোড করুন:**
@@ -141,6 +147,49 @@ Why pay for S3 when floci is free?
 | `floci stop`                         | Floci বন্ধ করে                |
 | `floci status`                       | Floci চলছে কিনা দেখায়        |
 | `floci logs --follow`                | Real-time log দেখায়          |
+
+---
+
+## Floci সম্পূর্ণ Reset করো (Fresh Start)
+
+কোনো কারণে সব মুছে নতুন করে শুরু করতে চাইলে:
+
+**১. Floci বন্ধ করো:**
+
+```bash
+floci stop
+```
+
+**২. সব data মুছো (IAM user, S3 bucket, সব কিছু):**
+
+```bash
+rm -rf ./floci-data
+```
+
+**৩. Fresh start করো:**
+
+```bash
+floci start --persist ./floci-data
+eval $(floci env)
+```
+
+**৪. সব clean আছে কিনা যাচাই করো:**
+
+```bash
+floci status
+aws iam list-users
+aws s3 ls
+```
+
+**প্রত্যাশিত output:**
+
+```
+✓ Floci is healthy
+{ "Users": [] }
+(কোনো bucket নেই)
+```
+
+> `floci-data` folder মুছে দিলে সব গেল — IAM user, group, role, policy, S3 bucket সব।
 
 ---
 

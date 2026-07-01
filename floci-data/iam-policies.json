@@ -1,1029 +1,1029 @@
 {
   "000000000000/arn:aws:iam::aws:policy/service-role/AWSLambdaDynamoDBExecutionRole" : {
-    "policyId" : "ANPAXV1J1JZ1BDE9B6FQ",
+    "policyId" : "ANPAQF19JCMFZ8ZN8PKK",
     "policyName" : "AWSLambdaDynamoDBExecutionRole",
     "path" : "/service-role/",
     "arn" : "arn:aws:iam::aws:policy/service-role/AWSLambdaDynamoDBExecutionRole",
     "description" : "Provides list and read access to DynamoDB streams and write permissions to CloudWatch Logs.",
     "defaultVersionId" : "v1",
     "attachmentCount" : 0,
-    "createDate" : "2026-07-01T14:14:12.466208324Z",
-    "updateDate" : "2026-07-01T14:14:12.466208424Z",
+    "createDate" : "2026-07-01T22:00:13.556451144Z",
+    "updateDate" : "2026-07-01T22:00:13.556451244Z",
     "tags" : { },
     "versions" : {
       "v1" : {
         "versionId" : "v1",
         "document" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}",
         "defaultVersion" : true,
-        "createDate" : "2026-07-01T14:14:12.466208524Z"
-      }
-    },
-    "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
-  },
-  "000000000000/arn:aws:iam::aws:policy/CloudWatchLambdaApplicationSignalsExecutionRolePolicy" : {
-    "policyId" : "ANPA32VX9V2799WYPTKS",
-    "policyName" : "CloudWatchLambdaApplicationSignalsExecutionRolePolicy",
-    "path" : "/",
-    "arn" : "arn:aws:iam::aws:policy/CloudWatchLambdaApplicationSignalsExecutionRolePolicy",
-    "description" : "Provides write access to X-Ray and CloudWatch Application Signals log group.",
-    "defaultVersionId" : "v1",
-    "attachmentCount" : 0,
-    "createDate" : "2026-07-01T14:14:12.466259027Z",
-    "updateDate" : "2026-07-01T14:14:12.466259127Z",
-    "tags" : { },
-    "versions" : {
-      "v1" : {
-        "versionId" : "v1",
-        "document" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}",
-        "defaultVersion" : true,
-        "createDate" : "2026-07-01T14:14:12.466259127Z"
+        "createDate" : "2026-07-01T22:00:13.556451244Z"
       }
     },
     "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
   },
   "000000000000/arn:aws:iam::aws:policy/AmazonEKSServicePolicy" : {
-    "policyId" : "ANPAMJN4E7ZZFKH0M3KA",
+    "policyId" : "ANPAJT7YOE97VSX4JHMJ",
     "policyName" : "AmazonEKSServicePolicy",
     "path" : "/",
     "arn" : "arn:aws:iam::aws:policy/AmazonEKSServicePolicy",
     "description" : "This policy allows Amazon Elastic Container Service for Kubernetes to create and manage the necessary resources to operate EKS Clusters.",
     "defaultVersionId" : "v1",
     "attachmentCount" : 0,
-    "createDate" : "2026-07-01T14:14:12.466222225Z",
-    "updateDate" : "2026-07-01T14:14:12.466222225Z",
+    "createDate" : "2026-07-01T22:00:13.556461845Z",
+    "updateDate" : "2026-07-01T22:00:13.556461845Z",
     "tags" : { },
     "versions" : {
       "v1" : {
         "versionId" : "v1",
         "document" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}",
         "defaultVersion" : true,
-        "createDate" : "2026-07-01T14:14:12.466222225Z"
+        "createDate" : "2026-07-01T22:00:13.556461845Z"
       }
     },
     "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
   },
-  "000000000000/arn:aws:iam::aws:policy/AmazonSageMakerCanvasEMRServerlessExecutionRolePolicy" : {
-    "policyId" : "ANPAQU9M9BA2RLTQ93GU",
-    "policyName" : "AmazonSageMakerCanvasEMRServerlessExecutionRolePolicy",
+  "000000000000/arn:aws:iam::aws:policy/CloudWatchLambdaApplicationSignalsExecutionRolePolicy" : {
+    "policyId" : "ANPAZAX0P8712119NTIF",
+    "policyName" : "CloudWatchLambdaApplicationSignalsExecutionRolePolicy",
     "path" : "/",
-    "arn" : "arn:aws:iam::aws:policy/AmazonSageMakerCanvasEMRServerlessExecutionRolePolicy",
-    "description" : "Provides access for Amazon SageMaker Canvas to manage EMR Serverless resources.",
+    "arn" : "arn:aws:iam::aws:policy/CloudWatchLambdaApplicationSignalsExecutionRolePolicy",
+    "description" : "Provides write access to X-Ray and CloudWatch Application Signals log group.",
     "defaultVersionId" : "v1",
     "attachmentCount" : 0,
-    "createDate" : "2026-07-01T14:14:12.466268628Z",
-    "updateDate" : "2026-07-01T14:14:12.466268628Z",
+    "createDate" : "2026-07-01T22:00:13.556472845Z",
+    "updateDate" : "2026-07-01T22:00:13.556472845Z",
     "tags" : { },
     "versions" : {
       "v1" : {
         "versionId" : "v1",
         "document" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}",
         "defaultVersion" : true,
-        "createDate" : "2026-07-01T14:14:12.466268728Z"
+        "createDate" : "2026-07-01T22:00:13.556472945Z"
       }
     },
     "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
   },
   "000000000000/arn:aws:iam::aws:policy/AWS-SSM-DiagnosisAutomation-ExecutionRolePolicy" : {
-    "policyId" : "ANPAB7AYX53I5K3948F8",
+    "policyId" : "ANPAJ4XX8G4O34H0UTMX",
     "policyName" : "AWS-SSM-DiagnosisAutomation-ExecutionRolePolicy",
     "path" : "/",
     "arn" : "arn:aws:iam::aws:policy/AWS-SSM-DiagnosisAutomation-ExecutionRolePolicy",
     "description" : "Provides permissions for AWS Systems Manager diagnosis automation execution.",
     "defaultVersionId" : "v1",
     "attachmentCount" : 0,
-    "createDate" : "2026-07-01T14:14:12.466263728Z",
-    "updateDate" : "2026-07-01T14:14:12.466263828Z",
+    "createDate" : "2026-07-01T22:00:13.556476246Z",
+    "updateDate" : "2026-07-01T22:00:13.556476246Z",
     "tags" : { },
     "versions" : {
       "v1" : {
         "versionId" : "v1",
         "document" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}",
         "defaultVersion" : true,
-        "createDate" : "2026-07-01T14:14:12.466263828Z"
+        "createDate" : "2026-07-01T22:00:13.556476346Z"
+      }
+    },
+    "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
+  },
+  "000000000000/arn:aws:iam::aws:policy/AmazonSageMakerCanvasEMRServerlessExecutionRolePolicy" : {
+    "policyId" : "ANPABIUTNBBTCAL5FNOM",
+    "policyName" : "AmazonSageMakerCanvasEMRServerlessExecutionRolePolicy",
+    "path" : "/",
+    "arn" : "arn:aws:iam::aws:policy/AmazonSageMakerCanvasEMRServerlessExecutionRolePolicy",
+    "description" : "Provides access for Amazon SageMaker Canvas to manage EMR Serverless resources.",
+    "defaultVersionId" : "v1",
+    "attachmentCount" : 0,
+    "createDate" : "2026-07-01T22:00:13.556480846Z",
+    "updateDate" : "2026-07-01T22:00:13.556480846Z",
+    "tags" : { },
+    "versions" : {
+      "v1" : {
+        "versionId" : "v1",
+        "document" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}",
+        "defaultVersion" : true,
+        "createDate" : "2026-07-01T22:00:13.556480846Z"
       }
     },
     "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
   },
   "000000000000/arn:aws:iam::aws:policy/service-role/AmazonRDSEnhancedMonitoringRole" : {
-    "policyId" : "ANPAO53EAL80JZMB0NUZ",
+    "policyId" : "ANPAAL45KPNCYMJH6O63",
     "policyName" : "AmazonRDSEnhancedMonitoringRole",
     "path" : "/service-role/",
     "arn" : "arn:aws:iam::aws:policy/service-role/AmazonRDSEnhancedMonitoringRole",
     "description" : "Provides permissions required for Amazon RDS Enhanced Monitoring.",
     "defaultVersionId" : "v1",
     "attachmentCount" : 0,
-    "createDate" : "2026-07-01T14:14:12.466226125Z",
-    "updateDate" : "2026-07-01T14:14:12.466226225Z",
+    "createDate" : "2026-07-01T22:00:13.556466345Z",
+    "updateDate" : "2026-07-01T22:00:13.556466345Z",
     "tags" : { },
     "versions" : {
       "v1" : {
         "versionId" : "v1",
         "document" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}",
         "defaultVersion" : true,
-        "createDate" : "2026-07-01T14:14:12.466226225Z"
-      }
-    },
-    "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
-  },
-  "000000000000/arn:aws:iam::aws:policy/service-role/SageMakerStudioBedrockFunctionExecutionRolePolicy" : {
-    "policyId" : "ANPA411BWI4TZW1WGJY0",
-    "policyName" : "SageMakerStudioBedrockFunctionExecutionRolePolicy",
-    "path" : "/service-role/",
-    "arn" : "arn:aws:iam::aws:policy/service-role/SageMakerStudioBedrockFunctionExecutionRolePolicy",
-    "description" : "Provides permissions for SageMaker Studio Bedrock function execution role.",
-    "defaultVersionId" : "v1",
-    "attachmentCount" : 0,
-    "createDate" : "2026-07-01T14:14:12.466269428Z",
-    "updateDate" : "2026-07-01T14:14:12.466269428Z",
-    "tags" : { },
-    "versions" : {
-      "v1" : {
-        "versionId" : "v1",
-        "document" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}",
-        "defaultVersion" : true,
-        "createDate" : "2026-07-01T14:14:12.466269428Z"
+        "createDate" : "2026-07-01T22:00:13.556466345Z"
       }
     },
     "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
   },
   "000000000000/arn:aws:iam::aws:policy/AmazonElasticFileSystemClientFullAccess" : {
-    "policyId" : "ANPAGK8CC028E9S0JA2M",
+    "policyId" : "ANPAZYM48FS38J71557Z",
     "policyName" : "AmazonElasticFileSystemClientFullAccess",
     "path" : "/",
     "arn" : "arn:aws:iam::aws:policy/AmazonElasticFileSystemClientFullAccess",
     "description" : "Provides root client access to an Amazon EFS file system.",
     "defaultVersionId" : "v1",
     "attachmentCount" : 0,
-    "createDate" : "2026-07-01T14:14:12.466188723Z",
-    "updateDate" : "2026-07-01T14:14:12.466188823Z",
+    "createDate" : "2026-07-01T22:00:13.556447544Z",
+    "updateDate" : "2026-07-01T22:00:13.556447644Z",
     "tags" : { },
     "versions" : {
       "v1" : {
         "versionId" : "v1",
         "document" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}",
         "defaultVersion" : true,
-        "createDate" : "2026-07-01T14:14:12.466188823Z"
+        "createDate" : "2026-07-01T22:00:13.556447644Z"
+      }
+    },
+    "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
+  },
+  "000000000000/arn:aws:iam::aws:policy/service-role/SageMakerStudioBedrockFunctionExecutionRolePolicy" : {
+    "policyId" : "ANPAUFGMJMKC7K8V4UQF",
+    "policyName" : "SageMakerStudioBedrockFunctionExecutionRolePolicy",
+    "path" : "/service-role/",
+    "arn" : "arn:aws:iam::aws:policy/service-role/SageMakerStudioBedrockFunctionExecutionRolePolicy",
+    "description" : "Provides permissions for SageMaker Studio Bedrock function execution role.",
+    "defaultVersionId" : "v1",
+    "attachmentCount" : 0,
+    "createDate" : "2026-07-01T22:00:13.556481546Z",
+    "updateDate" : "2026-07-01T22:00:13.556481646Z",
+    "tags" : { },
+    "versions" : {
+      "v1" : {
+        "versionId" : "v1",
+        "document" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}",
+        "defaultVersion" : true,
+        "createDate" : "2026-07-01T22:00:13.556481646Z"
       }
     },
     "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
   },
   "000000000000/arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly" : {
-    "policyId" : "ANPA9LWTIUZI23RAT6YU",
+    "policyId" : "ANPAT9ZMB210676QIJW2",
     "policyName" : "AmazonEC2ContainerRegistryReadOnly",
     "path" : "/",
     "arn" : "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly",
     "description" : "Provides read-only access to Amazon EC2 Container Registry repositories.",
     "defaultVersionId" : "v1",
     "attachmentCount" : 0,
-    "createDate" : "2026-07-01T14:14:12.466155121Z",
-    "updateDate" : "2026-07-01T14:14:12.466155221Z",
+    "createDate" : "2026-07-01T22:00:13.556433643Z",
+    "updateDate" : "2026-07-01T22:00:13.556433643Z",
     "tags" : { },
     "versions" : {
       "v1" : {
         "versionId" : "v1",
         "document" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}",
         "defaultVersion" : true,
-        "createDate" : "2026-07-01T14:14:12.466155221Z"
+        "createDate" : "2026-07-01T22:00:13.556433743Z"
       }
     },
     "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
   },
   "000000000000/arn:aws:iam::aws:policy/AmazonSNSFullAccess" : {
-    "policyId" : "ANPAJXAE5NEDA9VVDMQM",
+    "policyId" : "ANPASCU6KGL98VBKHU9J",
     "policyName" : "AmazonSNSFullAccess",
     "path" : "/",
     "arn" : "arn:aws:iam::aws:policy/AmazonSNSFullAccess",
     "description" : "Provides full access to Amazon SNS via the AWS Management Console.",
     "defaultVersionId" : "v1",
     "attachmentCount" : 0,
-    "createDate" : "2026-07-01T14:14:12.466161622Z",
-    "updateDate" : "2026-07-01T14:14:12.466161722Z",
+    "createDate" : "2026-07-01T22:00:13.556437944Z",
+    "updateDate" : "2026-07-01T22:00:13.556437944Z",
     "tags" : { },
     "versions" : {
       "v1" : {
         "versionId" : "v1",
         "document" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}",
         "defaultVersion" : true,
-        "createDate" : "2026-07-01T14:14:12.466161722Z"
+        "createDate" : "2026-07-01T22:00:13.556437944Z"
       }
     },
     "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
   },
   "000000000000/arn:aws:iam::aws:policy/AmazonEKSVPCResourceController" : {
-    "policyId" : "ANPAE0O8WZBA26OUV9Q6",
+    "policyId" : "ANPAV3SYT2ZDZ03RC5VZ",
     "policyName" : "AmazonEKSVPCResourceController",
     "path" : "/",
     "arn" : "arn:aws:iam::aws:policy/AmazonEKSVPCResourceController",
     "description" : "Policy used by VPC Resource Controller to manage ENI and IPs for worker nodes.",
     "defaultVersionId" : "v1",
     "attachmentCount" : 0,
-    "createDate" : "2026-07-01T14:14:12.466222925Z",
-    "updateDate" : "2026-07-01T14:14:12.466222925Z",
+    "createDate" : "2026-07-01T22:00:13.556462645Z",
+    "updateDate" : "2026-07-01T22:00:13.556462645Z",
     "tags" : { },
     "versions" : {
       "v1" : {
         "versionId" : "v1",
         "document" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}",
         "defaultVersion" : true,
-        "createDate" : "2026-07-01T14:14:12.466223025Z"
+        "createDate" : "2026-07-01T22:00:13.556462645Z"
       }
     },
     "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
   },
   "000000000000/arn:aws:iam::aws:policy/service-role/AWSLambdaKinesisExecutionRole" : {
-    "policyId" : "ANPAO6O7E3VL3YQFWRCJ",
+    "policyId" : "ANPAOUJ8NEFHVFK8RNV5",
     "policyName" : "AWSLambdaKinesisExecutionRole",
     "path" : "/service-role/",
     "arn" : "arn:aws:iam::aws:policy/service-role/AWSLambdaKinesisExecutionRole",
     "description" : "Provides list and read access to Kinesis streams and write permissions to CloudWatch Logs.",
     "defaultVersionId" : "v1",
     "attachmentCount" : 0,
-    "createDate" : "2026-07-01T14:14:12.466209725Z",
-    "updateDate" : "2026-07-01T14:14:12.466209825Z",
+    "createDate" : "2026-07-01T22:00:13.556451844Z",
+    "updateDate" : "2026-07-01T22:00:13.556451944Z",
     "tags" : { },
     "versions" : {
       "v1" : {
         "versionId" : "v1",
         "document" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}",
         "defaultVersion" : true,
-        "createDate" : "2026-07-01T14:14:12.466209825Z"
+        "createDate" : "2026-07-01T22:00:13.556451944Z"
       }
     },
     "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
   },
   "000000000000/arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess" : {
-    "policyId" : "ANPAPS8BSIKBW86GI57X",
+    "policyId" : "ANPAKWXKIBRQZKFMS5XN",
     "policyName" : "AmazonS3ReadOnlyAccess",
     "path" : "/",
     "arn" : "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess",
     "description" : "Provides read-only access to all buckets via the AWS Management Console.",
     "defaultVersionId" : "v1",
     "attachmentCount" : 0,
-    "createDate" : "2026-07-01T14:14:12.466134320Z",
-    "updateDate" : "2026-07-01T14:14:12.466134320Z",
+    "createDate" : "2026-07-01T22:00:13.556428943Z",
+    "updateDate" : "2026-07-01T22:00:13.556429043Z",
     "tags" : { },
     "versions" : {
       "v1" : {
         "versionId" : "v1",
         "document" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}",
         "defaultVersion" : true,
-        "createDate" : "2026-07-01T14:14:12.466134420Z"
+        "createDate" : "2026-07-01T22:00:13.556429043Z"
       }
     },
     "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
   },
   "000000000000/arn:aws:iam::aws:policy/PowerUserAccess" : {
-    "policyId" : "ANPAODCIE85R0LGWHW71",
+    "policyId" : "ANPAT4964NUM2ODSENAY",
     "policyName" : "PowerUserAccess",
     "path" : "/",
     "arn" : "arn:aws:iam::aws:policy/PowerUserAccess",
     "description" : "Provides full access to AWS services and resources, but does not allow management of Users and groups.",
     "defaultVersionId" : "v1",
     "attachmentCount" : 0,
-    "createDate" : "2026-07-01T14:14:12.466126320Z",
-    "updateDate" : "2026-07-01T14:14:12.466126420Z",
+    "createDate" : "2026-07-01T22:00:13.556364540Z",
+    "updateDate" : "2026-07-01T22:00:13.556364540Z",
     "tags" : { },
     "versions" : {
       "v1" : {
         "versionId" : "v1",
         "document" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}",
         "defaultVersion" : true,
-        "createDate" : "2026-07-01T14:14:12.466126520Z"
-      }
-    },
-    "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
-  },
-  "000000000000/arn:aws:iam::aws:policy/AdministratorAccess" : {
-    "policyId" : "ANPALEDMSWQ9O9G3NK8H",
-    "policyName" : "AdministratorAccess",
-    "path" : "/",
-    "arn" : "arn:aws:iam::aws:policy/AdministratorAccess",
-    "description" : "Provides full access to AWS services and resources.",
-    "defaultVersionId" : "v1",
-    "attachmentCount" : 0,
-    "createDate" : "2026-07-01T14:14:12.466107819Z",
-    "updateDate" : "2026-07-01T14:14:12.466108219Z",
-    "tags" : { },
-    "versions" : {
-      "v1" : {
-        "versionId" : "v1",
-        "document" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}",
-        "defaultVersion" : true,
-        "createDate" : "2026-07-01T14:14:12.466108219Z"
+        "createDate" : "2026-07-01T22:00:13.556364540Z"
       }
     },
     "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
   },
   "000000000000/arn:aws:iam::aws:policy/AWSXRayDaemonWriteAccess" : {
-    "policyId" : "ANPACEQTSD2NXRWMC2MZ",
+    "policyId" : "ANPAKMI9YXLV4NT3K8BX",
     "policyName" : "AWSXRayDaemonWriteAccess",
     "path" : "/",
     "arn" : "arn:aws:iam::aws:policy/AWSXRayDaemonWriteAccess",
     "description" : "Allows write permissions to the AWS X-Ray daemon.",
     "defaultVersionId" : "v1",
     "attachmentCount" : 0,
-    "createDate" : "2026-07-01T14:14:12.466187823Z",
-    "updateDate" : "2026-07-01T14:14:12.466187923Z",
+    "createDate" : "2026-07-01T22:00:13.556446844Z",
+    "updateDate" : "2026-07-01T22:00:13.556446844Z",
     "tags" : { },
     "versions" : {
       "v1" : {
         "versionId" : "v1",
         "document" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}",
         "defaultVersion" : true,
-        "createDate" : "2026-07-01T14:14:12.466187923Z"
+        "createDate" : "2026-07-01T22:00:13.556446844Z"
+      }
+    },
+    "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
+  },
+  "000000000000/arn:aws:iam::aws:policy/AdministratorAccess" : {
+    "policyId" : "ANPAZMXCXVQDIZ9H1SPJ",
+    "policyName" : "AdministratorAccess",
+    "path" : "/",
+    "arn" : "arn:aws:iam::aws:policy/AdministratorAccess",
+    "description" : "Provides full access to AWS services and resources.",
+    "defaultVersionId" : "v1",
+    "attachmentCount" : 0,
+    "createDate" : "2026-07-01T22:00:13.556359839Z",
+    "updateDate" : "2026-07-01T22:00:13.556360539Z",
+    "tags" : { },
+    "versions" : {
+      "v1" : {
+        "versionId" : "v1",
+        "document" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}",
+        "defaultVersion" : true,
+        "createDate" : "2026-07-01T22:00:13.556360539Z"
       }
     },
     "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
   },
   "000000000000/arn:aws:iam::aws:policy/AmazonSQSFullAccess" : {
-    "policyId" : "ANPAKDEDAKVCUX95WZHE",
+    "policyId" : "ANPAH2XME50XRLXGGL8P",
     "policyName" : "AmazonSQSFullAccess",
     "path" : "/",
     "arn" : "arn:aws:iam::aws:policy/AmazonSQSFullAccess",
     "description" : "Provides full access to Amazon SQS via the AWS Management Console.",
     "defaultVersionId" : "v1",
     "attachmentCount" : 0,
-    "createDate" : "2026-07-01T14:14:12.466160622Z",
-    "updateDate" : "2026-07-01T14:14:12.466160722Z",
+    "createDate" : "2026-07-01T22:00:13.556437043Z",
+    "updateDate" : "2026-07-01T22:00:13.556437143Z",
     "tags" : { },
     "versions" : {
       "v1" : {
         "versionId" : "v1",
         "document" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}",
         "defaultVersion" : true,
-        "createDate" : "2026-07-01T14:14:12.466160722Z"
+        "createDate" : "2026-07-01T22:00:13.556437143Z"
       }
     },
     "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
   },
   "000000000000/arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy" : {
-    "policyId" : "ANPABU2D4W9D65B9AAWY",
+    "policyId" : "ANPAAYA75G47474ACMOK",
     "policyName" : "AmazonEKS_CNI_Policy",
     "path" : "/",
     "arn" : "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy",
     "description" : "Provides the Amazon VPC CNI Plugin the permissions it requires to modify the IP address configuration on your EKS worker nodes.",
     "defaultVersionId" : "v1",
     "attachmentCount" : 0,
-    "createDate" : "2026-07-01T14:14:12.466224425Z",
-    "updateDate" : "2026-07-01T14:14:12.466224425Z",
+    "createDate" : "2026-07-01T22:00:13.556464145Z",
+    "updateDate" : "2026-07-01T22:00:13.556464145Z",
     "tags" : { },
     "versions" : {
       "v1" : {
         "versionId" : "v1",
         "document" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}",
         "defaultVersion" : true,
-        "createDate" : "2026-07-01T14:14:12.466224425Z"
+        "createDate" : "2026-07-01T22:00:13.556464245Z"
       }
     },
     "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
   },
   "000000000000/arn:aws:iam::aws:policy/ReadOnlyAccess" : {
-    "policyId" : "ANPAMME2XUY38U0V2WFD",
+    "policyId" : "ANPAJQ12D223KR5FE3A1",
     "policyName" : "ReadOnlyAccess",
     "path" : "/",
     "arn" : "arn:aws:iam::aws:policy/ReadOnlyAccess",
     "description" : "Provides read-only access to AWS services and resources.",
     "defaultVersionId" : "v1",
     "attachmentCount" : 0,
-    "createDate" : "2026-07-01T14:14:12.466128620Z",
-    "updateDate" : "2026-07-01T14:14:12.466128620Z",
+    "createDate" : "2026-07-01T22:00:13.556368840Z",
+    "updateDate" : "2026-07-01T22:00:13.556368940Z",
     "tags" : { },
     "versions" : {
       "v1" : {
         "versionId" : "v1",
         "document" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}",
         "defaultVersion" : true,
-        "createDate" : "2026-07-01T14:14:12.466128620Z"
+        "createDate" : "2026-07-01T22:00:13.556368940Z"
       }
     },
     "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
   },
   "000000000000/arn:aws:iam::aws:policy/IAMFullAccess" : {
-    "policyId" : "ANPATCLHT071HC0UTL8C",
+    "policyId" : "ANPA0BRKCM91QHWKUB0B",
     "policyName" : "IAMFullAccess",
     "path" : "/",
     "arn" : "arn:aws:iam::aws:policy/IAMFullAccess",
     "description" : "Provides full access to IAM.",
     "defaultVersionId" : "v1",
     "attachmentCount" : 0,
-    "createDate" : "2026-07-01T14:14:12.466132820Z",
-    "updateDate" : "2026-07-01T14:14:12.466132820Z",
+    "createDate" : "2026-07-01T22:00:13.556426943Z",
+    "updateDate" : "2026-07-01T22:00:13.556427043Z",
     "tags" : { },
     "versions" : {
       "v1" : {
         "versionId" : "v1",
         "document" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}",
         "defaultVersion" : true,
-        "createDate" : "2026-07-01T14:14:12.466132920Z"
+        "createDate" : "2026-07-01T22:00:13.556427043Z"
       }
     },
     "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
   },
   "000000000000/arn:aws:iam::aws:policy/service-role/SageMakerStudioDomainExecutionRolePolicy" : {
-    "policyId" : "ANPA5UDWBPDZL556DONR",
+    "policyId" : "ANPAPEVGRAVZJSJMJEL4",
     "policyName" : "SageMakerStudioDomainExecutionRolePolicy",
     "path" : "/service-role/",
     "arn" : "arn:aws:iam::aws:policy/service-role/SageMakerStudioDomainExecutionRolePolicy",
     "description" : "Provides permissions for the SageMaker Studio domain execution role.",
     "defaultVersionId" : "v1",
     "attachmentCount" : 0,
-    "createDate" : "2026-07-01T14:14:12.466270128Z",
-    "updateDate" : "2026-07-01T14:14:12.466271128Z",
+    "createDate" : "2026-07-01T22:00:13.556482346Z",
+    "updateDate" : "2026-07-01T22:00:13.556483346Z",
     "tags" : { },
     "versions" : {
       "v1" : {
         "versionId" : "v1",
         "document" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}",
         "defaultVersion" : true,
-        "createDate" : "2026-07-01T14:14:12.466271228Z"
+        "createDate" : "2026-07-01T22:00:13.556483446Z"
       }
     },
     "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
   },
   "000000000000/arn:aws:iam::aws:policy/service-role/SageMakerStudioQueryExecutionRolePolicy" : {
-    "policyId" : "ANPA9O9U4K9PUYC43MNP",
+    "policyId" : "ANPAPIJTSK1ZUFUF269U",
     "policyName" : "SageMakerStudioQueryExecutionRolePolicy",
     "path" : "/service-role/",
     "arn" : "arn:aws:iam::aws:policy/service-role/SageMakerStudioQueryExecutionRolePolicy",
     "description" : "Provides permissions for SageMaker Studio query execution role.",
     "defaultVersionId" : "v1",
     "attachmentCount" : 0,
-    "createDate" : "2026-07-01T14:14:12.466271928Z",
-    "updateDate" : "2026-07-01T14:14:12.466271928Z",
+    "createDate" : "2026-07-01T22:00:13.556484146Z",
+    "updateDate" : "2026-07-01T22:00:13.556484146Z",
     "tags" : { },
     "versions" : {
       "v1" : {
         "versionId" : "v1",
         "document" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}",
         "defaultVersion" : true,
-        "createDate" : "2026-07-01T14:14:12.466272028Z"
+        "createDate" : "2026-07-01T22:00:13.556484146Z"
       }
     },
     "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
   },
   "000000000000/arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess" : {
-    "policyId" : "ANPA2MPQ762TNP2VLOB5",
+    "policyId" : "ANPAFKV317TJA5ZPX806",
     "policyName" : "AmazonDynamoDBFullAccess",
     "path" : "/",
     "arn" : "arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess",
     "description" : "Provides full access to Amazon DynamoDB via the AWS Management Console.",
     "defaultVersionId" : "v1",
     "attachmentCount" : 0,
-    "createDate" : "2026-07-01T14:14:12.466136220Z",
-    "updateDate" : "2026-07-01T14:14:12.466136220Z",
+    "createDate" : "2026-07-01T22:00:13.556431843Z",
+    "updateDate" : "2026-07-01T22:00:13.556431943Z",
     "tags" : { },
     "versions" : {
       "v1" : {
         "versionId" : "v1",
         "document" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}",
         "defaultVersion" : true,
-        "createDate" : "2026-07-01T14:14:12.466136220Z"
+        "createDate" : "2026-07-01T22:00:13.556431943Z"
       }
     },
     "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
   },
   "000000000000/arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole" : {
-    "policyId" : "ANPACDRUFFKX8DDJQO33",
+    "policyId" : "ANPA8UTEB0YGCG0BKFS8",
     "policyName" : "AWSLambdaBasicExecutionRole",
     "path" : "/service-role/",
     "arn" : "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
     "description" : "Provides write permissions to CloudWatch Logs.",
     "defaultVersionId" : "v1",
     "attachmentCount" : 0,
-    "createDate" : "2026-07-01T14:14:12.466189723Z",
-    "updateDate" : "2026-07-01T14:14:12.466189723Z",
+    "createDate" : "2026-07-01T22:00:13.556448544Z",
+    "updateDate" : "2026-07-01T22:00:13.556448544Z",
     "tags" : { },
     "versions" : {
       "v1" : {
         "versionId" : "v1",
         "document" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}",
         "defaultVersion" : true,
-        "createDate" : "2026-07-01T14:14:12.466189723Z"
+        "createDate" : "2026-07-01T22:00:13.556448544Z"
       }
     },
     "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
   },
   "000000000000/arn:aws:iam::aws:policy/service-role/AWSLambdaBasicDurableExecutionRolePolicy" : {
-    "policyId" : "ANPAVIUH3R2D627PN58V",
+    "policyId" : "ANPAMQ6ZAHR09DWP26B6",
     "policyName" : "AWSLambdaBasicDurableExecutionRolePolicy",
     "path" : "/service-role/",
     "arn" : "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicDurableExecutionRolePolicy",
     "description" : "Provides write permissions to CloudWatch Logs and read/write permissions to durable execution APIs for Lambda durable functions.",
     "defaultVersionId" : "v1",
     "attachmentCount" : 0,
-    "createDate" : "2026-07-01T14:14:12.466191624Z",
-    "updateDate" : "2026-07-01T14:14:12.466191624Z",
+    "createDate" : "2026-07-01T22:00:13.556450244Z",
+    "updateDate" : "2026-07-01T22:00:13.556450244Z",
     "tags" : { },
     "versions" : {
       "v1" : {
         "versionId" : "v1",
         "document" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}",
         "defaultVersion" : true,
-        "createDate" : "2026-07-01T14:14:12.466191724Z"
+        "createDate" : "2026-07-01T22:00:13.556450344Z"
       }
     },
     "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
   },
   "000000000000/arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy" : {
-    "policyId" : "ANPAYF41SNHEWV6GHVBF",
+    "policyId" : "ANPAE3M7B77G56CE3004",
     "policyName" : "AmazonECSTaskExecutionRolePolicy",
     "path" : "/service-role/",
     "arn" : "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy",
     "description" : "Provides the Amazon ECS container agent and Fargate agent permissions to make AWS API calls on your behalf.",
     "defaultVersionId" : "v1",
     "attachmentCount" : 0,
-    "createDate" : "2026-07-01T14:14:12.466218525Z",
-    "updateDate" : "2026-07-01T14:14:12.466218525Z",
+    "createDate" : "2026-07-01T22:00:13.556458045Z",
+    "updateDate" : "2026-07-01T22:00:13.556458145Z",
     "tags" : { },
     "versions" : {
       "v1" : {
         "versionId" : "v1",
         "document" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}",
         "defaultVersion" : true,
-        "createDate" : "2026-07-01T14:14:12.466218625Z"
+        "createDate" : "2026-07-01T22:00:13.556458145Z"
       }
     },
     "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
   },
   "000000000000/arn:aws:iam::aws:policy/service-role/AWSConfigRulesExecutionRole" : {
-    "policyId" : "ANPAN1QJJ23KF6YVB4CW",
+    "policyId" : "ANPALUD9XP89A8NK37V3",
     "policyName" : "AWSConfigRulesExecutionRole",
     "path" : "/service-role/",
     "arn" : "arn:aws:iam::aws:policy/service-role/AWSConfigRulesExecutionRole",
     "description" : "Allows AWS Config Rules Lambda functions to call AWS services and read the configuration of AWS resources.",
     "defaultVersionId" : "v1",
     "attachmentCount" : 0,
-    "createDate" : "2026-07-01T14:14:12.466260127Z",
-    "updateDate" : "2026-07-01T14:14:12.466260227Z",
+    "createDate" : "2026-07-01T22:00:13.556473645Z",
+    "updateDate" : "2026-07-01T22:00:13.556473645Z",
     "tags" : { },
     "versions" : {
       "v1" : {
         "versionId" : "v1",
         "document" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}",
         "defaultVersion" : true,
-        "createDate" : "2026-07-01T14:14:12.466260227Z"
+        "createDate" : "2026-07-01T22:00:13.556473745Z"
       }
     },
     "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
   },
   "000000000000/arn:aws:iam::aws:policy/AmazonEC2FullAccess" : {
-    "policyId" : "ANPA80TEVQIXLAAFE53R",
+    "policyId" : "ANPADCGJLH79CS4FT1I7",
     "policyName" : "AmazonEC2FullAccess",
     "path" : "/",
     "arn" : "arn:aws:iam::aws:policy/AmazonEC2FullAccess",
     "description" : "Provides full access to Amazon EC2 via the AWS Management Console.",
     "defaultVersionId" : "v1",
     "attachmentCount" : 0,
-    "createDate" : "2026-07-01T14:14:12.466136920Z",
-    "updateDate" : "2026-07-01T14:14:12.466136920Z",
+    "createDate" : "2026-07-01T22:00:13.556432643Z",
+    "updateDate" : "2026-07-01T22:00:13.556432643Z",
     "tags" : { },
     "versions" : {
       "v1" : {
         "versionId" : "v1",
         "document" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}",
         "defaultVersion" : true,
-        "createDate" : "2026-07-01T14:14:12.466136920Z"
+        "createDate" : "2026-07-01T22:00:13.556432643Z"
       }
     },
     "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
   },
   "000000000000/arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy" : {
-    "policyId" : "ANPASAXR11V9YKVTZZ7I",
+    "policyId" : "ANPAK7USZ1P5TASAUH8V",
     "policyName" : "CloudWatchAgentServerPolicy",
     "path" : "/",
     "arn" : "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy",
     "description" : "Provides permissions required to use the CloudWatch agent on servers.",
     "defaultVersionId" : "v1",
     "attachmentCount" : 0,
-    "createDate" : "2026-07-01T14:14:12.466165622Z",
-    "updateDate" : "2026-07-01T14:14:12.466165622Z",
+    "createDate" : "2026-07-01T22:00:13.556442444Z",
+    "updateDate" : "2026-07-01T22:00:13.556442444Z",
     "tags" : { },
     "versions" : {
       "v1" : {
         "versionId" : "v1",
         "document" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}",
         "defaultVersion" : true,
-        "createDate" : "2026-07-01T14:14:12.466165622Z"
+        "createDate" : "2026-07-01T22:00:13.556442544Z"
       }
     },
     "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
   },
   "000000000000/arn:aws:iam::aws:policy/service-role/AmazonS3ObjectLambdaExecutionRolePolicy" : {
-    "policyId" : "ANPA8V38D29KZFGOGFR6",
+    "policyId" : "ANPAT8A1U55LM21HOCHH",
     "policyName" : "AmazonS3ObjectLambdaExecutionRolePolicy",
     "path" : "/service-role/",
     "arn" : "arn:aws:iam::aws:policy/service-role/AmazonS3ObjectLambdaExecutionRolePolicy",
     "description" : "Provides write permissions to CloudWatch Logs for S3 Object Lambda access points.",
     "defaultVersionId" : "v1",
     "attachmentCount" : 0,
-    "createDate" : "2026-07-01T14:14:12.466226826Z",
-    "updateDate" : "2026-07-01T14:14:12.466226926Z",
+    "createDate" : "2026-07-01T22:00:13.556467045Z",
+    "updateDate" : "2026-07-01T22:00:13.556467045Z",
     "tags" : { },
     "versions" : {
       "v1" : {
         "versionId" : "v1",
         "document" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}",
         "defaultVersion" : true,
-        "createDate" : "2026-07-01T14:14:12.466226926Z"
+        "createDate" : "2026-07-01T22:00:13.556467145Z"
       }
     },
     "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
   },
   "000000000000/arn:aws:iam::aws:policy/service-role/AmazonDataZoneDomainExecutionRolePolicy" : {
-    "policyId" : "ANPA3SSE0N96VMIA69JY",
+    "policyId" : "ANPAF39HJZ27P90HZTN0",
     "policyName" : "AmazonDataZoneDomainExecutionRolePolicy",
     "path" : "/service-role/",
     "arn" : "arn:aws:iam::aws:policy/service-role/AmazonDataZoneDomainExecutionRolePolicy",
     "description" : "Provides permissions for the Amazon DataZone domain execution role.",
     "defaultVersionId" : "v1",
     "attachmentCount" : 0,
-    "createDate" : "2026-07-01T14:14:12.466272628Z",
-    "updateDate" : "2026-07-01T14:14:12.466272728Z",
+    "createDate" : "2026-07-01T22:00:13.556484846Z",
+    "updateDate" : "2026-07-01T22:00:13.556484946Z",
     "tags" : { },
     "versions" : {
       "v1" : {
         "versionId" : "v1",
         "document" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}",
         "defaultVersion" : true,
-        "createDate" : "2026-07-01T14:14:12.466272728Z"
+        "createDate" : "2026-07-01T22:00:13.556484946Z"
       }
     },
     "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
   },
   "000000000000/arn:aws:iam::aws:policy/AmazonEKSFargatePodExecutionRolePolicy" : {
-    "policyId" : "ANPAEBILTXZ6V6B69QCW",
+    "policyId" : "ANPAFV5VVOMZY4SLS4DT",
     "policyName" : "AmazonEKSFargatePodExecutionRolePolicy",
     "path" : "/",
     "arn" : "arn:aws:iam::aws:policy/AmazonEKSFargatePodExecutionRolePolicy",
     "description" : "Provides access to other AWS service resources required to run Amazon EKS pods on AWS Fargate.",
     "defaultVersionId" : "v1",
     "attachmentCount" : 0,
-    "createDate" : "2026-07-01T14:14:12.466219425Z",
-    "updateDate" : "2026-07-01T14:14:12.466219425Z",
+    "createDate" : "2026-07-01T22:00:13.556458945Z",
+    "updateDate" : "2026-07-01T22:00:13.556458945Z",
     "tags" : { },
     "versions" : {
       "v1" : {
         "versionId" : "v1",
         "document" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}",
         "defaultVersion" : true,
-        "createDate" : "2026-07-01T14:14:12.466219425Z"
+        "createDate" : "2026-07-01T22:00:13.556458945Z"
       }
     },
     "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
   },
   "000000000000/arn:aws:iam::aws:policy/AmazonS3FullAccess" : {
-    "policyId" : "ANPAETU2TD3J8RB3302Y",
+    "policyId" : "ANPAUF76K2XN8S1GPN56",
     "policyName" : "AmazonS3FullAccess",
     "path" : "/",
     "arn" : "arn:aws:iam::aws:policy/AmazonS3FullAccess",
     "description" : "Provides full access to all buckets via the AWS Management Console.",
     "defaultVersionId" : "v1",
     "attachmentCount" : 0,
-    "createDate" : "2026-07-01T14:14:12.466133520Z",
-    "updateDate" : "2026-07-01T14:14:12.466133620Z",
+    "createDate" : "2026-07-01T22:00:13.556428143Z",
+    "updateDate" : "2026-07-01T22:00:13.556428143Z",
     "tags" : { },
     "versions" : {
       "v1" : {
         "versionId" : "v1",
         "document" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}",
         "defaultVersion" : true,
-        "createDate" : "2026-07-01T14:14:12.466133620Z"
+        "createDate" : "2026-07-01T22:00:13.556428243Z"
       }
     },
     "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
   },
   "000000000000/arn:aws:iam::aws:policy/AWS-SSM-RemediationAutomation-ExecutionRolePolicy" : {
-    "policyId" : "ANPAUEHYVM85EV8MV024",
+    "policyId" : "ANPAF7WBHGC83GJ4ONSD",
     "policyName" : "AWS-SSM-RemediationAutomation-ExecutionRolePolicy",
     "path" : "/",
     "arn" : "arn:aws:iam::aws:policy/AWS-SSM-RemediationAutomation-ExecutionRolePolicy",
     "description" : "Provides permissions for AWS Systems Manager remediation automation execution.",
     "defaultVersionId" : "v1",
     "attachmentCount" : 0,
-    "createDate" : "2026-07-01T14:14:12.466264528Z",
-    "updateDate" : "2026-07-01T14:14:12.466264628Z",
+    "createDate" : "2026-07-01T22:00:13.556477346Z",
+    "updateDate" : "2026-07-01T22:00:13.556477346Z",
     "tags" : { },
     "versions" : {
       "v1" : {
         "versionId" : "v1",
         "document" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}",
         "defaultVersion" : true,
-        "createDate" : "2026-07-01T14:14:12.466264628Z"
+        "createDate" : "2026-07-01T22:00:13.556477346Z"
       }
     },
     "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
   },
   "000000000000/arn:aws:iam::aws:policy/CloudWatchLambdaInsightsExecutionRolePolicy" : {
-    "policyId" : "ANPAMILEUD6C5BUY8KZA",
+    "policyId" : "ANPAIF4FBV55U72AX436",
     "policyName" : "CloudWatchLambdaInsightsExecutionRolePolicy",
     "path" : "/",
     "arn" : "arn:aws:iam::aws:policy/CloudWatchLambdaInsightsExecutionRolePolicy",
     "description" : "Allows Lambda Insights to create and write to CloudWatch Logs log groups for Lambda Insights monitoring.",
     "defaultVersionId" : "v1",
     "attachmentCount" : 0,
-    "createDate" : "2026-07-01T14:14:12.466227826Z",
-    "updateDate" : "2026-07-01T14:14:12.466227826Z",
+    "createDate" : "2026-07-01T22:00:13.556468245Z",
+    "updateDate" : "2026-07-01T22:00:13.556468245Z",
     "tags" : { },
     "versions" : {
       "v1" : {
         "versionId" : "v1",
         "document" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}",
         "defaultVersion" : true,
-        "createDate" : "2026-07-01T14:14:12.466228226Z"
+        "createDate" : "2026-07-01T22:00:13.556468745Z"
       }
     },
     "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
   },
   "000000000000/arn:aws:iam::aws:policy/AWSPartnerCentralSellingResourceSnapshotJobExecutionRolePolicy" : {
-    "policyId" : "ANPAS5MMUPRP20CHRARD",
+    "policyId" : "ANPAXYFNITNEVL62MVKQ",
     "policyName" : "AWSPartnerCentralSellingResourceSnapshotJobExecutionRolePolicy",
     "path" : "/",
     "arn" : "arn:aws:iam::aws:policy/AWSPartnerCentralSellingResourceSnapshotJobExecutionRolePolicy",
     "description" : "Provides permissions for AWS Partner Central resource snapshot job execution role.",
     "defaultVersionId" : "v1",
     "attachmentCount" : 0,
-    "createDate" : "2026-07-01T14:14:12.466295829Z",
-    "updateDate" : "2026-07-01T14:14:12.466295829Z",
+    "createDate" : "2026-07-01T22:00:13.556488346Z",
+    "updateDate" : "2026-07-01T22:00:13.556488346Z",
     "tags" : { },
     "versions" : {
       "v1" : {
         "versionId" : "v1",
         "document" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}",
         "defaultVersion" : true,
-        "createDate" : "2026-07-01T14:14:12.466295929Z"
+        "createDate" : "2026-07-01T22:00:13.556488446Z"
       }
     },
     "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
   },
   "000000000000/arn:aws:iam::aws:policy/AmazonVPCFullAccess" : {
-    "policyId" : "ANPA3TBH1JGA84XWD54Z",
+    "policyId" : "ANPAHBI4P34K30USP47E",
     "policyName" : "AmazonVPCFullAccess",
     "path" : "/",
     "arn" : "arn:aws:iam::aws:policy/AmazonVPCFullAccess",
     "description" : "Provides full access to Amazon VPC via the AWS Management Console.",
     "defaultVersionId" : "v1",
     "attachmentCount" : 0,
-    "createDate" : "2026-07-01T14:14:12.466162322Z",
-    "updateDate" : "2026-07-01T14:14:12.466162422Z",
+    "createDate" : "2026-07-01T22:00:13.556438544Z",
+    "updateDate" : "2026-07-01T22:00:13.556438644Z",
     "tags" : { },
     "versions" : {
       "v1" : {
         "versionId" : "v1",
         "document" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}",
         "defaultVersion" : true,
-        "createDate" : "2026-07-01T14:14:12.466162422Z"
+        "createDate" : "2026-07-01T22:00:13.556438644Z"
       }
     },
     "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
   },
   "000000000000/arn:aws:iam::aws:policy/AmazonEKSClusterPolicy" : {
-    "policyId" : "ANPASJJVO7MTBUCV2GPK",
+    "policyId" : "ANPAJFW4VUQNVKHWOHNT",
     "policyName" : "AmazonEKSClusterPolicy",
     "path" : "/",
     "arn" : "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy",
     "description" : "Provides Kubernetes the permissions it requires to manage resources on your behalf.",
     "defaultVersionId" : "v1",
     "attachmentCount" : 0,
-    "createDate" : "2026-07-01T14:14:12.466220125Z",
-    "updateDate" : "2026-07-01T14:14:12.466220225Z",
+    "createDate" : "2026-07-01T22:00:13.556459645Z",
+    "updateDate" : "2026-07-01T22:00:13.556459745Z",
     "tags" : { },
     "versions" : {
       "v1" : {
         "versionId" : "v1",
         "document" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}",
         "defaultVersion" : true,
-        "createDate" : "2026-07-01T14:14:12.466220225Z"
+        "createDate" : "2026-07-01T22:00:13.556459745Z"
       }
     },
     "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
   },
   "000000000000/arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole" : {
-    "policyId" : "ANPAR2NJR5MITPHID62N",
+    "policyId" : "ANPAPHMMZHOTNNM8YYGW",
     "policyName" : "AWSLambdaVPCAccessExecutionRole",
     "path" : "/service-role/",
     "arn" : "arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole",
     "description" : "Provides minimum permissions for a Lambda function to execute while accessing a resource within a VPC.",
     "defaultVersionId" : "v1",
     "attachmentCount" : 0,
-    "createDate" : "2026-07-01T14:14:12.466216025Z",
-    "updateDate" : "2026-07-01T14:14:12.466216025Z",
+    "createDate" : "2026-07-01T22:00:13.556455844Z",
+    "updateDate" : "2026-07-01T22:00:13.556455844Z",
     "tags" : { },
     "versions" : {
       "v1" : {
         "versionId" : "v1",
         "document" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}",
         "defaultVersion" : true,
-        "createDate" : "2026-07-01T14:14:12.466216125Z"
+        "createDate" : "2026-07-01T22:00:13.556455944Z"
       }
     },
     "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
   },
   "000000000000/arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore" : {
-    "policyId" : "ANPATLKFN76MV60PBM6S",
+    "policyId" : "ANPAZYIOB2S01OJOQC4W",
     "policyName" : "AmazonSSMManagedInstanceCore",
     "path" : "/",
     "arn" : "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore",
     "description" : "Provides permissions required for instances to use AWS Systems Manager core service functionality.",
     "defaultVersionId" : "v1",
     "attachmentCount" : 0,
-    "createDate" : "2026-07-01T14:14:12.466265328Z",
-    "updateDate" : "2026-07-01T14:14:12.466265328Z",
+    "createDate" : "2026-07-01T22:00:13.556478046Z",
+    "updateDate" : "2026-07-01T22:00:13.556478046Z",
     "tags" : { },
     "versions" : {
       "v1" : {
         "versionId" : "v1",
         "document" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}",
         "defaultVersion" : true,
-        "createDate" : "2026-07-01T14:14:12.466265328Z"
+        "createDate" : "2026-07-01T22:00:13.556478046Z"
       }
     },
     "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
   },
   "000000000000/arn:aws:iam::aws:policy/AWSCloudFormationFullAccess" : {
-    "policyId" : "ANPAXH76Q7Y87KYJ6WR5",
+    "policyId" : "ANPA05OSSRIGM3DNU0PZ",
     "policyName" : "AWSCloudFormationFullAccess",
     "path" : "/",
     "arn" : "arn:aws:iam::aws:policy/AWSCloudFormationFullAccess",
     "description" : "Provides full access to AWS CloudFormation.",
     "defaultVersionId" : "v1",
     "attachmentCount" : 0,
-    "createDate" : "2026-07-01T14:14:12.466182923Z",
-    "updateDate" : "2026-07-01T14:14:12.466183023Z",
+    "createDate" : "2026-07-01T22:00:13.556444644Z",
+    "updateDate" : "2026-07-01T22:00:13.556444644Z",
     "tags" : { },
     "versions" : {
       "v1" : {
         "versionId" : "v1",
         "document" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}",
         "defaultVersion" : true,
-        "createDate" : "2026-07-01T14:14:12.466183123Z"
+        "createDate" : "2026-07-01T22:00:13.556444644Z"
       }
     },
     "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
   },
   "000000000000/arn:aws:iam::aws:policy/service-role/AmazonSageMakerGeospatialExecutionRole" : {
-    "policyId" : "ANPAQ8XZ9OPZLD9QOAPJ",
+    "policyId" : "ANPAZ4RHRN7L6GW38XSL",
     "policyName" : "AmazonSageMakerGeospatialExecutionRole",
     "path" : "/service-role/",
     "arn" : "arn:aws:iam::aws:policy/service-role/AmazonSageMakerGeospatialExecutionRole",
     "description" : "Provides full access to Amazon SageMaker Geospatial capabilities and related services.",
     "defaultVersionId" : "v1",
     "attachmentCount" : 0,
-    "createDate" : "2026-07-01T14:14:12.466267828Z",
-    "updateDate" : "2026-07-01T14:14:12.466267928Z",
+    "createDate" : "2026-07-01T22:00:13.556480046Z",
+    "updateDate" : "2026-07-01T22:00:13.556480046Z",
     "tags" : { },
     "versions" : {
       "v1" : {
         "versionId" : "v1",
         "document" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}",
         "defaultVersion" : true,
-        "createDate" : "2026-07-01T14:14:12.466267928Z"
+        "createDate" : "2026-07-01T22:00:13.556480146Z"
       }
     },
     "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
   },
   "000000000000/arn:aws:iam::aws:policy/AWSLambdaFullAccess" : {
-    "policyId" : "ANPAYSXWGPQ1R176JPDN",
+    "policyId" : "ANPAZ0GVK2OE6XQL34ZQ",
     "policyName" : "AWSLambdaFullAccess",
     "path" : "/",
     "arn" : "arn:aws:iam::aws:policy/AWSLambdaFullAccess",
     "description" : "Provides full access to Lambda, S3, DynamoDB, CloudWatch Metrics and Logs.",
     "defaultVersionId" : "v1",
     "attachmentCount" : 0,
-    "createDate" : "2026-07-01T14:14:12.466166422Z",
-    "updateDate" : "2026-07-01T14:14:12.466166422Z",
+    "createDate" : "2026-07-01T22:00:13.556443444Z",
+    "updateDate" : "2026-07-01T22:00:13.556443444Z",
     "tags" : { },
     "versions" : {
       "v1" : {
         "versionId" : "v1",
         "document" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}",
         "defaultVersion" : true,
-        "createDate" : "2026-07-01T14:14:12.466166422Z"
+        "createDate" : "2026-07-01T22:00:13.556443444Z"
       }
     },
     "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
   },
   "000000000000/arn:aws:iam::aws:policy/service-role/AWSMSKReplicatorExecutionRole" : {
-    "policyId" : "ANPAK5T2CB7MHA97US5L",
+    "policyId" : "ANPA4QF86UVRENLA60ZO",
     "policyName" : "AWSMSKReplicatorExecutionRole",
     "path" : "/service-role/",
     "arn" : "arn:aws:iam::aws:policy/service-role/AWSMSKReplicatorExecutionRole",
     "description" : "Grants permissions to Amazon MSK Replicator to replicate data between MSK Clusters.",
     "defaultVersionId" : "v1",
     "attachmentCount" : 0,
-    "createDate" : "2026-07-01T14:14:12.466260927Z",
-    "updateDate" : "2026-07-01T14:14:12.466261027Z",
+    "createDate" : "2026-07-01T22:00:13.556474345Z",
+    "updateDate" : "2026-07-01T22:00:13.556474445Z",
     "tags" : { },
     "versions" : {
       "v1" : {
         "versionId" : "v1",
         "document" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}",
         "defaultVersion" : true,
-        "createDate" : "2026-07-01T14:14:12.466261027Z"
+        "createDate" : "2026-07-01T22:00:13.556474445Z"
       }
     },
     "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
   },
   "000000000000/arn:aws:iam::aws:policy/service-role/AWSLambdaSQSQueueExecutionRole" : {
-    "policyId" : "ANPA8G8M66FMA3BIHTPR",
+    "policyId" : "ANPAKZQC70KU913CVX65",
     "policyName" : "AWSLambdaSQSQueueExecutionRole",
     "path" : "/service-role/",
     "arn" : "arn:aws:iam::aws:policy/service-role/AWSLambdaSQSQueueExecutionRole",
     "description" : "Provides receive message, delete message, and read attribute access to SQS queues, and write permissions to CloudWatch Logs.",
     "defaultVersionId" : "v1",
     "attachmentCount" : 0,
-    "createDate" : "2026-07-01T14:14:12.466215225Z",
-    "updateDate" : "2026-07-01T14:14:12.466215225Z",
+    "createDate" : "2026-07-01T22:00:13.556455044Z",
+    "updateDate" : "2026-07-01T22:00:13.556455144Z",
     "tags" : { },
     "versions" : {
       "v1" : {
         "versionId" : "v1",
         "document" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}",
         "defaultVersion" : true,
-        "createDate" : "2026-07-01T14:14:12.466215225Z"
+        "createDate" : "2026-07-01T22:00:13.556455144Z"
       }
     },
     "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
   },
   "000000000000/arn:aws:iam::aws:policy/service-role/AWSLambdaMSKExecutionRole" : {
-    "policyId" : "ANPA8EP8521QIUVAFRD3",
+    "policyId" : "ANPA3NO8DWS9KCU49FDP",
     "policyName" : "AWSLambdaMSKExecutionRole",
     "path" : "/service-role/",
     "arn" : "arn:aws:iam::aws:policy/service-role/AWSLambdaMSKExecutionRole",
     "description" : "Provides permissions required to access an MSK cluster within a VPC, manage network interfaces, and write to CloudWatch Logs.",
     "defaultVersionId" : "v1",
     "attachmentCount" : 0,
-    "createDate" : "2026-07-01T14:14:12.466214325Z",
-    "updateDate" : "2026-07-01T14:14:12.466214325Z",
+    "createDate" : "2026-07-01T22:00:13.556454244Z",
+    "updateDate" : "2026-07-01T22:00:13.556454244Z",
     "tags" : { },
     "versions" : {
       "v1" : {
         "versionId" : "v1",
         "document" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}",
         "defaultVersion" : true,
-        "createDate" : "2026-07-01T14:14:12.466214325Z"
+        "createDate" : "2026-07-01T22:00:13.556454344Z"
       }
     },
     "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
   },
   "000000000000/arn:aws:iam::aws:policy/CloudWatchFullAccess" : {
-    "policyId" : "ANPAM2OW7178A3JJELQN",
+    "policyId" : "ANPA5HPNWV2ZH1JQ0EDT",
     "policyName" : "CloudWatchFullAccess",
     "path" : "/",
     "arn" : "arn:aws:iam::aws:policy/CloudWatchFullAccess",
     "description" : "Provides full access to CloudWatch.",
     "defaultVersionId" : "v1",
     "attachmentCount" : 0,
-    "createDate" : "2026-07-01T14:14:12.466163022Z",
-    "updateDate" : "2026-07-01T14:14:12.466163122Z",
+    "createDate" : "2026-07-01T22:00:13.556439344Z",
+    "updateDate" : "2026-07-01T22:00:13.556439344Z",
     "tags" : { },
     "versions" : {
       "v1" : {
         "versionId" : "v1",
         "document" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}",
         "defaultVersion" : true,
-        "createDate" : "2026-07-01T14:14:12.466163122Z"
+        "createDate" : "2026-07-01T22:00:13.556439344Z"
       }
     },
     "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
   },
   "000000000000/arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy" : {
-    "policyId" : "ANPAZ57K4TWUTI98WF87",
+    "policyId" : "ANPAJNDG8G15FXAMFW4N",
     "policyName" : "AmazonEKSWorkerNodePolicy",
     "path" : "/",
     "arn" : "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy",
     "description" : "This policy allows Amazon EKS worker nodes to connect to Amazon EKS Clusters.",
     "defaultVersionId" : "v1",
     "attachmentCount" : 0,
-    "createDate" : "2026-07-01T14:14:12.466223625Z",
-    "updateDate" : "2026-07-01T14:14:12.466223725Z",
+    "createDate" : "2026-07-01T22:00:13.556463445Z",
+    "updateDate" : "2026-07-01T22:00:13.556463445Z",
     "tags" : { },
     "versions" : {
       "v1" : {
         "versionId" : "v1",
         "document" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}",
         "defaultVersion" : true,
-        "createDate" : "2026-07-01T14:14:12.466223725Z"
+        "createDate" : "2026-07-01T22:00:13.556463445Z"
       }
     },
     "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
   },
   "000000000000/arn:aws:iam::aws:policy/AmazonBedrockAgentCoreMemoryBedrockModelInferenceExecutionRolePolicy" : {
-    "policyId" : "ANPAVLHPMBBQBMB851C8",
+    "policyId" : "ANPASWEYZGI7A6S96P1T",
     "policyName" : "AmazonBedrockAgentCoreMemoryBedrockModelInferenceExecutionRolePolicy",
     "path" : "/",
     "arn" : "arn:aws:iam::aws:policy/AmazonBedrockAgentCoreMemoryBedrockModelInferenceExecutionRolePolicy",
     "description" : "Provides Bedrock Model inference permissions to Bedrock agent core memory.",
     "defaultVersionId" : "v1",
     "attachmentCount" : 0,
-    "createDate" : "2026-07-01T14:14:12.466291129Z",
-    "updateDate" : "2026-07-01T14:14:12.466291229Z",
+    "createDate" : "2026-07-01T22:00:13.556486246Z",
+    "updateDate" : "2026-07-01T22:00:13.556486246Z",
     "tags" : { },
     "versions" : {
       "v1" : {
         "versionId" : "v1",
         "document" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}",
         "defaultVersion" : true,
-        "createDate" : "2026-07-01T14:14:12.466291229Z"
+        "createDate" : "2026-07-01T22:00:13.556486346Z"
       }
     },
     "defaultDocument" : "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}]}"
