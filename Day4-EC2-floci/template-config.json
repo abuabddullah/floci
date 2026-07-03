@@ -1,0 +1,15 @@
+{
+  "ImageId": "ami-12345678",
+  "InstanceType": "t2.micro",
+  "KeyName": "my-ec2-key",
+  "SecurityGroupIds": ["sg-xxxxxxxxxxxxxxxxx"],
+  "TagSpecifications": [
+    {
+      "ResourceType": "instance",
+      "Tags": [
+        { "Key": "Name", "Value": "web-server" },
+        { "Key": "Environment", "Value": "dev" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,820 @@
+====================================
+Tutorial Started
+
+Time:               2026-07-03 19:38:42
+Working Directory:  /d/devops/floci
+Git Branch:         feat/day-4
+Log File:           /d/devops/floci/Day4-EC2-floci/Day4-EC2-floci.log
+====================================
+
+
+$ floci status
+Floci Status
+
+  Container:  floci  running
+  Image:      floci/floci:latest
+  Ports:      4566->4566/tcp
+  Endpoint:   http://localhost:4566
+  Reachable:  yes
+  Version:    1.5.29
+  Edition:    floci-always-free
+
+$ echo $AWS_ENDPOINT_URL
+http://localhost:4566
+
+$ echo $AWS_ACCESS_KEY_ID
+test
+
+$ echo $AWS_SECRET_ACCESS_KEY
+test
+
+$ echo $AWS_DEFAULT_REGION
+us-east-1
+
+
+
+$ aws ec2 create-key-pair --key-name my-ec2-key
+{
+    "KeyPairId": "key-109a7bc2320f3f07d",
+    "KeyName": "my-ec2-key",
+    "KeyFingerprint": "00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00",
+    "KeyMaterial": "-----BEGIN RSA PRIVATE KEY-----\nMIIEpAIBAAKCAQEA0Z3VS5JJcds3xHn/ygWep4Ib/ue7YiKbCIZgYpYDe0+FAKE\n-----END RSA PRIVATE KEY-----"
+}
+
+$ aws ec2 describe-key-pairs
+{
+    "KeyPairs": [
+        {
+            "KeyPairId": "key-109a7bc2320f3f07d",
+            "Tags": [],
+            "KeyName": "my-ec2-key",
+            "KeyFingerprint": "00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00"
+        },
+        {
+            "KeyPairId": "key-f61fa6f0b64c9b91c",
+            "Tags": [],
+            "KeyName": "floci-ec3-key",
+            "KeyFingerprint": "00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00"
+        }
+    ]
+}
+
+$ aws ec2 create-security-group   --group-name my-ec2-sg   --description "EC2 Security Group for web server"
+{
+    "GroupId": "sg-77903c7544c0a6861"
+}
+
+
+$ aws ec2 describe-security-groups   --query 'SecurityGroups[?GroupName==`my-ec2-sg`].GroupId'   --output text
+sg-77903c7544c0a6861
+
+
+
+$ aws ec2 authorize-security-group-ingress   --group-id sg-77903c7544c0a6861   --protocol tcp   --port 22   --cidr 0.0.0.0/0
+{
+    "Return": true,
+    "SecurityGroupRules": [
+        {
+            "SecurityGroupRuleId": "sgr-548d2614dfc51d266",
+            "GroupId": "sg-77903c7544c0a6861",
+            "GroupOwnerId": "000000000000",
+            "IsEgress": false,
+            "IpProtocol": "tcp",
+            "FromPort": 22,
+            "ToPort": 22,
+            "CidrIpv4": "0.0.0.0/0"
+        }
+    ]
+}
+
+$ aws ec2 describe-security-groups --group-ids sg-77903c7544c0a6861 --output table
+--------------------------------------------------------
+|                DescribeSecurityGroups                |
++------------------------------------------------------+
+||                   SecurityGroups                   ||
+|+--------------+-------------------------------------+|
+||  Description |  EC2 Security Group for web server  ||
+||  GroupId     |  sg-77903c7544c0a6861               ||
+||  GroupName   |  my-ec2-sg                          ||
+||  OwnerId     |  000000000000                       ||
+||  VpcId       |  vpc-default                        ||
+|+--------------+-------------------------------------+|
+|||                   IpPermissions                  |||
+||+---------------------------------+----------------+||
+|||  FromPort                       |  22            |||
+|||  IpProtocol                     |  tcp           |||
+|||  ToPort                         |  22            |||
+||+---------------------------------+----------------+||
+||||                    IpRanges                    ||||
+|||+--------------------+---------------------------+|||
+||||  CidrIp            |  0.0.0.0/0                ||||
+|||+--------------------+---------------------------+|||
+|||                IpPermissionsEgress               |||
+||+----------------------------------+---------------+||
+|||  IpProtocol                      |  -1           |||
+||+----------------------------------+---------------+||
+||||                    IpRanges                    ||||
+|||+--------------------+---------------------------+|||
+||||  CidrIp            |  0.0.0.0/0                ||||
+|||+--------------------+---------------------------+|||
+
+$ aws ec2 run-instances   --image-id ami-12345678   --instance-type t2.micro   --key-name my-ec2-key   --security-group-ids sg-77903c7544c0a6861   --count 1
+{
+    "ReservationId": "r-217e856b9ca40fcb5",
+    "OwnerId": "000000000000",
+    "Groups": [],
+    "Instances": [
+        {
+            "Architecture": "x86_64",
+            "BlockDeviceMappings": [
+                {
+                    "DeviceName": "/dev/xvda",
+                    "Ebs": {
+                        "AttachTime": "2026-07-03T14:07:39.066000+00:00",
+                        "DeleteOnTermination": true,
+                        "Status": "attached",
+                        "VolumeId": "vol-cc5972ca190b4f7b0"
+                    }
+                }
+            ],
+            "ClientToken": "b22bd109-adae-4d18-9eb8-6a22b3480ea5",
+            "EbsOptimized": false,
+            "EnaSupport": true,
+            "Hypervisor": "xen",
+            "NetworkInterfaces": [
+                {
+                    "Attachment": {
+                        "AttachTime": "2026-07-03T14:07:39.066000+00:00",
+                        "AttachmentId": "eni-attach-0b0053c62154b680b",
+                        "DeleteOnTermination": true,
+                        "DeviceIndex": 0,
+                        "Status": "attached"
+                    },
+                    "Groups": [
+                        {
+                            "GroupId": "sg-77903c7544c0a6861",
+                            "GroupName": "my-ec2-sg"
+                        }
+                    ],
+                    "NetworkInterfaceId": "eni-0397bd0adc2daf240",
+                    "OwnerId": "000000000000",
+                    "PrivateDnsName": "ip-172-31-32-10.ec2.internal",
+                    "PrivateIpAddress": "172.31.32.10",
+                    "PrivateIpAddresses": [
+                        {
+                            "Primary": true,
+                            "PrivateDnsName": "ip-172-31-32-10.ec2.internal",
+                            "PrivateIpAddress": "172.31.32.10"
+                        }
+                    ],
+                    "SourceDestCheck": true,
+                    "Status": "in-use",
+                    "SubnetId": "subnet-default-c",
+                    "VpcId": "vpc-default"
+                }
+            ],
+            "RootDeviceName": "/dev/xvda",
+            "RootDeviceType": "ebs",
+            "SecurityGroups": [
+                {
+                    "GroupId": "sg-77903c7544c0a6861",
+                    "GroupName": "my-ec2-sg"
+                }
+            ],
+            "SourceDestCheck": true,
+            "Tags": [],
+            "VirtualizationType": "hvm",
+            "CpuOptions": {
+                "CoreCount": 1,
+                "ThreadsPerCore": 1
+            },
+            "CapacityReservationSpecification": {
+                "CapacityReservationPreference": "open"
+            },
+            "HibernationOptions": {
+                "Configured": false
+            },
+            "MetadataOptions": {
+                "State": "applied",
+                "HttpTokens": "optional",
+                "HttpPutResponseHopLimit": 1,
+                "HttpEndpoint": "enabled",
+                "HttpProtocolIpv6": "disabled",
+                "InstanceMetadataTags": "disabled"
+            },
+            "EnclaveOptions": {
+                "Enabled": false
+            },
+            "PrivateDnsNameOptions": {
+                "HostnameType": "ip-name",
+                "EnableResourceNameDnsARecord": false,
+                "EnableResourceNameDnsAAAARecord": false
+            },
+            "MaintenanceOptions": {
+                "AutoRecovery": "default"
+            },
+            "InstanceId": "i-df17e803238c283b5",
+            "ImageId": "ami-12345678",
+            "State": {
+                "Code": 0,
+                "Name": "pending"
+            },
+            "PrivateDnsName": "ip-172-31-32-10.ec2.internal",
+            "KeyName": "my-ec2-key",
+            "AmiLaunchIndex": 0,
+            "InstanceType": "t2.micro",
+            "LaunchTime": "2026-07-03T14:07:39.066000+00:00",
+            "Placement": {
+                "Tenancy": "default",
+                "AvailabilityZone": "us-east-1c"
+            },
+            "Monitoring": {
+                "State": "disabled"
+            },
+            "SubnetId": "subnet-default-c",
+            "VpcId": "vpc-default",
+            "PrivateIpAddress": "172.31.32.10"
+        }
+    ]
+}
+
+$ echo '"InstanceId": "i-df17e803238c283b5"' > Day4-EC2-floci/cred.txt
+
+$ cat Day4-EC2-floci/cred.txt 
+"InstanceId": "i-df17e803238c283b5"
+
+$ cat Day4-EC2-floci/startup.sh
+#!/bin/bash
+yum update -y
+yum install nginx -y
+systemctl start nginx
+systemctl enable nginx
+
+
+$ aws ec2 run-instances   --image-id ami-12345678   --instance-type t2.micro   --key-name my-ec2-key   --security-group-ids sg-77903c7544c0a6861   --user-data file://Day4-EC2-floci/startup.sh   --count 1
+{
+    "ReservationId": "r-94dce3fce8a8a87df",
+    "OwnerId": "000000000000",
+    "Groups": [],
+    "Instances": [
+        {
+            "Architecture": "x86_64",
+            "BlockDeviceMappings": [
+                {
+                    "DeviceName": "/dev/xvda",
+                    "Ebs": {
+                        "AttachTime": "2026-07-03T14:18:29.909000+00:00",
+                        "DeleteOnTermination": true,
+                        "Status": "attached",
+                        "VolumeId": "vol-2fd8fb079252e57a4"
+                    }
+                }
+            ],
+            "ClientToken": "44e3f628-21c7-4fb8-9924-13db14c02e99",
+            "EbsOptimized": false,
+            "EnaSupport": true,
+            "Hypervisor": "xen",
+            "NetworkInterfaces": [
+                {
+                    "Attachment": {
+                        "AttachTime": "2026-07-03T14:18:29.909000+00:00",
+                        "AttachmentId": "eni-attach-f33c13d0718ab1729",
+                        "DeleteOnTermination": true,
+                        "DeviceIndex": 0,
+                        "Status": "attached"
+                    },
+                    "Groups": [
+                        {
+                            "GroupId": "sg-77903c7544c0a6861",
+                            "GroupName": "my-ec2-sg"
+                        }
+                    ],
+                    "NetworkInterfaceId": "eni-82e7343d0d9ab6f34",
+                    "OwnerId": "000000000000",
+                    "PrivateDnsName": "ip-172-31-32-11.ec2.internal",
+                    "PrivateIpAddress": "172.31.32.11",
+                    "PrivateIpAddresses": [
+                        {
+                            "Primary": true,
+                            "PrivateDnsName": "ip-172-31-32-11.ec2.internal",
+                            "PrivateIpAddress": "172.31.32.11"
+                        }
+                    ],
+                    "SourceDestCheck": true,
+                    "Status": "in-use",
+                    "SubnetId": "subnet-default-c",
+                    "VpcId": "vpc-default"
+                }
+            ],
+            "RootDeviceName": "/dev/xvda",
+            "RootDeviceType": "ebs",
+            "SecurityGroups": [
+                {
+                    "GroupId": "sg-77903c7544c0a6861",
+                    "GroupName": "my-ec2-sg"
+                }
+            ],
+            "SourceDestCheck": true,
+            "Tags": [],
+            "VirtualizationType": "hvm",
+            "CpuOptions": {
+                "CoreCount": 1,
+                "ThreadsPerCore": 1
+            },
+            "CapacityReservationSpecification": {
+                "CapacityReservationPreference": "open"
+            },
+            "HibernationOptions": {
+                "Configured": false
+            },
+            "MetadataOptions": {
+                "State": "applied",
+                "HttpTokens": "optional",
+                "HttpPutResponseHopLimit": 1,
+                "HttpEndpoint": "enabled",
+                "HttpProtocolIpv6": "disabled",
+                "InstanceMetadataTags": "disabled"
+            },
+            "EnclaveOptions": {
+                "Enabled": false
+            },
+            "PrivateDnsNameOptions": {
+                "HostnameType": "ip-name",
+                "EnableResourceNameDnsARecord": false,
+                "EnableResourceNameDnsAAAARecord": false
+            },
+            "MaintenanceOptions": {
+                "AutoRecovery": "default"
+            },
+            "InstanceId": "i-0250b77a06a129a2e",
+            "ImageId": "ami-12345678",
+            "State": {
+                "Code": 0,
+                "Name": "pending"
+            },
+            "PrivateDnsName": "ip-172-31-32-11.ec2.internal",
+            "KeyName": "my-ec2-key",
+            "AmiLaunchIndex": 0,
+            "InstanceType": "t2.micro",
+            "LaunchTime": "2026-07-03T14:18:29.909000+00:00",
+            "Placement": {
+                "Tenancy": "default",
+                "AvailabilityZone": "us-east-1c"
+            },
+            "Monitoring": {
+                "State": "disabled"
+            },
+            "SubnetId": "subnet-default-c",
+            "VpcId": "vpc-default",
+            "PrivateIpAddress": "172.31.32.11"
+        }
+    ]
+}
+
+$ aws ec2 describe-instances   --query 'Reservations[*].Instances[*].[InstanceId,State.Name,InstanceType,PublicIpAddress,KeyName]'   --output table
+---------------------------------------------------------------------------
+|                            DescribeInstances                            |
++----------------------+----------+-----------+------------+--------------+
+|  i-0250b77a06a129a2e |  running |  t2.micro |  127.0.0.1 |  my-ec2-key  |
+|  i-df17e803238c283b5 |  running |  t2.micro |  127.0.0.1 |  my-ec2-key  |
++----------------------+----------+-----------+------------+--------------+
+
+$ aws ec2 describe-instances --instance-ids i-df17e803238c283b5 
+{
+    "Reservations": [
+        {
+            "ReservationId": "r-b35c2523c0413411e",
+            "OwnerId": "000000000000",
+            "Groups": [],
+            "Instances": [
+                {
+                    "Architecture": "x86_64",
+                    "BlockDeviceMappings": [
+                        {
+                            "DeviceName": "/dev/xvda",
+                            "Ebs": {
+                                "AttachTime": "2026-07-03T14:07:39.066000+00:00",
+                                "DeleteOnTermination": true,
+                                "Status": "attached",
+                                "VolumeId": "vol-cc5972ca190b4f7b0"
+                            }
+                        }
+                    ],
+                    "ClientToken": "b22bd109-adae-4d18-9eb8-6a22b3480ea5",
+                    "EbsOptimized": false,
+                    "EnaSupport": true,
+                    "Hypervisor": "xen",
+                    "NetworkInterfaces": [
+                        {
+                            "Attachment": {
+                                "AttachTime": "2026-07-03T14:07:39.066000+00:00",
+                                "AttachmentId": "eni-attach-0b0053c62154b680b",
+                                "DeleteOnTermination": true,
+                                "DeviceIndex": 0,
+                                "Status": "attached"
+                            },
+                            "Groups": [
+                                {
+                                    "GroupId": "sg-77903c7544c0a6861",
+                                    "GroupName": "my-ec2-sg"
+                                }
+                            ],
+                            "NetworkInterfaceId": "eni-0397bd0adc2daf240",
+                            "OwnerId": "000000000000",
+                            "PrivateDnsName": "ip-172-17-0-3.ec2.internal",
+                            "PrivateIpAddress": "172.17.0.3",
+                            "PrivateIpAddresses": [
+                                {
+                                    "Primary": true,
+                                    "PrivateDnsName": "ip-172-17-0-3.ec2.internal",
+                                    "PrivateIpAddress": "172.17.0.3"
+                                }
+                            ],
+                            "SourceDestCheck": true,
+                            "Status": "in-use",
+                            "SubnetId": "subnet-default-c",
+                            "VpcId": "vpc-default"
+                        }
+                    ],
+                    "RootDeviceName": "/dev/xvda",
+                    "RootDeviceType": "ebs",
+                    "SecurityGroups": [
+                        {
+                            "GroupId": "sg-77903c7544c0a6861",
+                            "GroupName": "my-ec2-sg"
+                        }
+                    ],
+                    "SourceDestCheck": true,
+                    "Tags": [],
+                    "VirtualizationType": "hvm",
+                    "CpuOptions": {
+                        "CoreCount": 1,
+                        "ThreadsPerCore": 1
+                    },
+                    "CapacityReservationSpecification": {
+                        "CapacityReservationPreference": "open"
+                    },
+                    "HibernationOptions": {
+                        "Configured": false
+                    },
+                    "MetadataOptions": {
+                        "State": "applied",
+                        "HttpTokens": "optional",
+                        "HttpPutResponseHopLimit": 1,
+                        "HttpEndpoint": "enabled",
+                        "HttpProtocolIpv6": "disabled",
+                        "InstanceMetadataTags": "disabled"
+                    },
+                    "EnclaveOptions": {
+                        "Enabled": false
+                    },
+                    "PrivateDnsNameOptions": {
+                        "HostnameType": "ip-name",
+                        "EnableResourceNameDnsARecord": false,
+                        "EnableResourceNameDnsAAAARecord": false
+                    },
+                    "MaintenanceOptions": {
+                        "AutoRecovery": "default"
+                    },
+                    "InstanceId": "i-df17e803238c283b5",
+                    "ImageId": "ami-12345678",
+                    "State": {
+                        "Code": 16,
+                        "Name": "running"
+                    },
+                    "PrivateDnsName": "ip-172-17-0-3.ec2.internal",
+                    "PublicDnsName": "localhost",
+                    "KeyName": "my-ec2-key",
+                    "AmiLaunchIndex": 0,
+                    "InstanceType": "t2.micro",
+                    "LaunchTime": "2026-07-03T14:07:39.066000+00:00",
+                    "Placement": {
+                        "Tenancy": "default",
+                        "AvailabilityZone": "us-east-1c"
+                    },
+                    "Monitoring": {
+                        "State": "disabled"
+                    },
+                    "SubnetId": "subnet-default-c",
+                    "VpcId": "vpc-default",
+                    "PrivateIpAddress": "172.17.0.3",
+                    "PublicIpAddress": "127.0.0.1"
+                }
+            ]
+        }
+    ]
+}
+
+$ aws ec2 create-tags   --resources  i-df17e803238c283b5   --tags Key=Name,Value=my-web-server Key=Environment,Value=dev
+
+$ aws ec2 describe-instances   --instance-ids  i-df17e803238c283b5   --query 'Reservations[*].Instances[*].Tags'
+[
+    [
+        [
+            {
+                "Key": "Name",
+                "Value": "my-web-server"
+            },
+            {
+                "Key": "Environment",
+                "Value": "dev"
+            }
+        ]
+    ]
+]
+
+$ cat Day4-EC2-floci/template-config.json
+{
+  "ImageId": "ami-12345678",
+  "InstanceType": "t2.micro",
+  "KeyName": "my-ec2-key",
+  "SecurityGroupIds": ["sg-xxxxxxxxxxxxxxxxx"],
+  "TagSpecifications": [
+    {
+      "ResourceType": "instance",
+      "Tags": [
+        { "Key": "Name", "Value": "web-server" },
+        { "Key": "Environment", "Value": "dev" }
+      ]
+    }
+  ]
+}
+
+$ aws ec2 create-launch-template   --launch-template-name my-web-template   --version-description "Web server v1"   --launch-template-data file://Day4-EC2-floci/template-config.json
+{
+    "LaunchTemplate": {
+        "LaunchTemplateId": "lt-88d1bbce872a3edc8",
+        "LaunchTemplateName": "my-web-template",
+        "CreateTime": "2026-07-03T15:57:35.879000+00:00",
+        "CreatedBy": "arn:aws:iam::000000000000:root",
+        "DefaultVersionNumber": 1,
+        "LatestVersionNumber": 1,
+        "Tags": []
+    }
+}
+
+$ aws ec2 describe-launch-templates --output table
+----------------------------------------------------------------
+|                    DescribeLaunchTemplates                   |
++--------------------------------------------------------------+
+||                       LaunchTemplates                      ||
+|+-----------------------+------------------------------------+|
+||  CreateTime           |  2026-07-03T15:57:35.879000+00:00  ||
+||  CreatedBy            |  arn:aws:iam::000000000000:root    ||
+||  DefaultVersionNumber |  1                                 ||
+||  LatestVersionNumber  |  1                                 ||
+||  LaunchTemplateId     |  lt-88d1bbce872a3edc8              ||
+||  LaunchTemplateName   |  my-web-template                   ||
+|+-----------------------+------------------------------------+|
+
+
+
+
+$ aws ec2 describe-launch-template-versions   --launch-template-name my-web-template   --output json
+{
+    "LaunchTemplateVersions": [
+        {
+            "LaunchTemplateId": "lt-88d1bbce872a3edc8",
+            "LaunchTemplateName": "my-web-template",
+            "VersionNumber": 1,
+            "CreateTime": "2026-07-03T15:57:35.879000+00:00",
+            "CreatedBy": "arn:aws:iam::000000000000:root",
+            "DefaultVersion": true,
+            "LaunchTemplateData": {
+                "ImageId": "ami-12345678",
+                "InstanceType": "t2.micro",
+                "KeyName": "my-ec2-key",
+                "TagSpecifications": [
+                    {
+                        "ResourceType": "instance",
+                        "Tags": [
+                            {
+                                "Key": "Name",
+                                "Value": "web-server"
+                            },
+                            {
+                                "Key": "Environment",
+                                "Value": "dev"
+                            }
+                        ]
+                    }
+                ],
+                "SecurityGroupIds": [
+                    "sg-xxxxxxxxxxxxxxxxx"
+                ]
+            }
+        }
+    ]
+}
+
+$ aws ec2 run-instances   --launch-template LaunchTemplateName=my-web-template,Version=1   --count 1
+
+An error occurred (MissingParameter) when calling the RunInstances operation: The request must contain the parameter ImageId
+
+$ aws ec2 run-instances   --launch-template LaunchTemplateName=my-web-template,Version=1   --image-id ami-12345678   --count 1
+{
+    "ReservationId": "r-2c5b414c65ab39fb6",
+    "OwnerId": "000000000000",
+    "Groups": [],
+    "Instances": [
+        {
+            "Architecture": "x86_64",
+            "BlockDeviceMappings": [
+                {
+                    "DeviceName": "/dev/xvda",
+                    "Ebs": {
+                        "AttachTime": "2026-07-03T16:17:10.255000+00:00",
+                        "DeleteOnTermination": true,
+                        "Status": "attached",
+                        "VolumeId": "vol-c6762c509f388a51b"
+                    }
+                }
+            ],
+            "ClientToken": "4da43930-ffab-4cf2-a478-87c2c1bbeb6b",
+            "EbsOptimized": false,
+            "EnaSupport": true,
+            "Hypervisor": "xen",
+            "NetworkInterfaces": [
+                {
+                    "Attachment": {
+                        "AttachTime": "2026-07-03T16:17:10.255000+00:00",
+                        "AttachmentId": "eni-attach-c0650969772a45331",
+                        "DeleteOnTermination": true,
+                        "DeviceIndex": 0,
+                        "Status": "attached"
+                    },
+                    "Groups": [
+                        {
+                            "GroupId": "sg-default",
+                            "GroupName": "default"
+                        }
+                    ],
+                    "NetworkInterfaceId": "eni-3723e1757c016b970",
+                    "OwnerId": "000000000000",
+                    "PrivateDnsName": "ip-172-31-32-12.ec2.internal",
+                    "PrivateIpAddress": "172.31.32.12",
+                    "PrivateIpAddresses": [
+                        {
+                            "Primary": true,
+                            "PrivateDnsName": "ip-172-31-32-12.ec2.internal",
+                            "PrivateIpAddress": "172.31.32.12"
+                        }
+                    ],
+                    "SourceDestCheck": true,
+                    "Status": "in-use",
+                    "SubnetId": "subnet-default-c",
+                    "VpcId": "vpc-default"
+                }
+            ],
+            "RootDeviceName": "/dev/xvda",
+            "RootDeviceType": "ebs",
+            "SecurityGroups": [
+                {
+                    "GroupId": "sg-default",
+                    "GroupName": "default"
+                }
+            ],
+            "SourceDestCheck": true,
+            "Tags": [],
+            "VirtualizationType": "hvm",
+            "CpuOptions": {
+                "CoreCount": 1,
+                "ThreadsPerCore": 1
+            },
+            "CapacityReservationSpecification": {
+                "CapacityReservationPreference": "open"
+            },
+            "HibernationOptions": {
+                "Configured": false
+            },
+            "MetadataOptions": {
+                "State": "applied",
+                "HttpTokens": "optional",
+                "HttpPutResponseHopLimit": 1,
+                "HttpEndpoint": "enabled",
+                "HttpProtocolIpv6": "disabled",
+                "InstanceMetadataTags": "disabled"
+            },
+            "EnclaveOptions": {
+                "Enabled": false
+            },
+            "PrivateDnsNameOptions": {
+                "HostnameType": "ip-name",
+                "EnableResourceNameDnsARecord": false,
+                "EnableResourceNameDnsAAAARecord": false
+            },
+            "MaintenanceOptions": {
+                "AutoRecovery": "default"
+            },
+            "InstanceId": "i-f78ff5b068e5e2452",
+            "ImageId": "ami-12345678",
+            "State": {
+                "Code": 0,
+                "Name": "pending"
+            },
+            "PrivateDnsName": "ip-172-31-32-12.ec2.internal",
+            "AmiLaunchIndex": 0,
+            "InstanceType": "t2.micro",
+            "LaunchTime": "2026-07-03T16:17:10.255000+00:00",
+            "Placement": {
+                "Tenancy": "default",
+                "AvailabilityZone": "us-east-1c"
+            },
+            "Monitoring": {
+                "State": "disabled"
+            },
+            "SubnetId": "subnet-default-c",
+            "VpcId": "vpc-default",
+            "PrivateIpAddress": "172.31.32.12"
+        }
+    ]
+}
+
+$ aws ec2 describe-instances   --query 'Reservations[*].Instances[*].[InstanceId,State.Name,InstanceType]'   --output table
+------------------------------------------------
+|               DescribeInstances              |
++----------------------+----------+------------+
+|  i-0250b77a06a129a2e |  running |  t2.micro  |
+|  i-f78ff5b068e5e2452 |  running |  t2.micro  |
+|  i-df17e803238c283b5 |  running |  t2.micro  |
++----------------------+----------+------------+
+
+$ aws ec2 delete-launch-template   --launch-template-name my-web-template
+{
+    "LaunchTemplate": {
+        "LaunchTemplateId": "lt-88d1bbce872a3edc8",
+        "LaunchTemplateName": "my-web-template",
+        "CreateTime": "2026-07-03T15:57:35.879000+00:00",
+        "CreatedBy": "arn:aws:iam::000000000000:root",
+        "DefaultVersionNumber": 1,
+        "LatestVersionNumber": 1,
+        "Tags": []
+    }
+}
+
+$ aws ec2 stop-instances --instance-ids  i-df17e803238c283b5
+{
+    "StoppingInstances": [
+        {
+            "InstanceId": "i-df17e803238c283b5",
+            "CurrentState": {
+                "Code": 64,
+                "Name": "stopping"
+            },
+            "PreviousState": {
+                "Code": 16,
+                "Name": "running"
+            }
+        }
+    ]
+}
+
+$ aws ec2 start-instances --instance-ids  i-df17e803238c283b5
+{
+    "StartingInstances": [
+        {
+            "InstanceId": "i-df17e803238c283b5",
+            "CurrentState": {
+                "Code": 0,
+                "Name": "pending"
+            },
+            "PreviousState": {
+                "Code": 64,
+                "Name": "stopping"
+            }
+        }
+    ]
+}
+
+$ aws ec2 terminate-instances --instance-ids  i-df17e803238c283b5
+{
+    "TerminatingInstances": [
+        {
+            "InstanceId": "i-df17e803238c283b5",
+            "CurrentState": {
+                "Code": 32,
+                "Name": "shutting-down"
+            },
+            "PreviousState": {
+                "Code": 80,
+                "Name": "stopped"
+            }
+        }
+    ]
+}
+
+$ aws ec2 describe-instances   --query 'Reservations[*].Instances[*].[InstanceId,State.Name]'   --output table
+---------------------------------------
+|          DescribeInstances          |
++----------------------+--------------+
+|  i-0250b77a06a129a2e |  running     |
+|  i-f78ff5b068e5e2452 |  running     |
+|  i-df17e803238c283b5 |  terminated  |
++----------------------+--------------+
+
+$ stoplog
+
+====================================
+Tutorial Finished
+Time: 2026-07-03 22:44:32
+====================================

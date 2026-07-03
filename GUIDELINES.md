@@ -108,6 +108,19 @@ http://localhost:4566
 
 ## গুরুত্বপূর্ণ নিয়মাবলী
 
+### Command Verification Rule
+
+নতুন Day-এর file লেখার আগে **প্রতিটি AWS CLI command AWS official documentation থেকে WebSearch দিয়ে verify করতে হবে।**
+
+কারণ: training data-তে পুরনো tutorial এবং deprecated pattern থাকতে পারে (যেমন EC2-Classic-এর `--security-groups`, `--group-name` — যেটা VPC-তে কাজ করে না)।
+
+**নিয়ম:**
+- `--security-groups` না, সবসময় `--security-group-ids` (VPC-তে)
+- `--group-name` শুধু `create-security-group`-এ, reference করতে সবসময় `--group-id`
+- নতুন service-এর command লেখার আগে AWS docs search করো
+
+---
+
 ### Command Rules
 
 | নিষিদ্ধ (PowerShell) | সঠিক (Git Bash) |
