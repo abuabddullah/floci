@@ -31,19 +31,27 @@ floci/
 ### ১. Header
 
 ```markdown
-# দিন X: [টপিক নাম] (Bengali file)
+# Day X: [টপিক নাম] (Bengali file)
+
 # Day X: [Topic Name] (English file)
+
 ### Floci দিয়ে হাতে-কলমে শেখো (Git Bash)
 
 > সব কমান্ড **Git Bash**-এ রান করতে হবে।
 > কমান্ড রান করার আগে **Docker Desktop** অবশ্যই চালু থাকতে হবে।
+
+📌 **যোগাযোগ / সোশ্যাল মিডিয়া:**
+[LinkedIn](https://www.linkedin.com/in/asifaowadud) · [YouTube](https://www.youtube.com/@OOAAOW?sub_confirmation=1) · [Telegram](https://t.me/ooaaow) · [Web Lab](https://oao-devops-lab.vercel.app/) · [Facebook](https://www.facebook.com/OOAAOW/)
 ```
+
+**নিয়ম:** এই সোশ্যাল মিডিয়া লিংক লাইনটা **প্রতিটি Day-এর ফাইলে (Bengali ও English, দুইটাতেই)** header-এর ঠিক নিচে, একদম উপরের দিকে থাকতে হবে — ক্লিকযোগ্য (markdown link) ফরম্যাটে, plain URL হিসেবে না।
 
 ---
 
 ### ২. পার্ট ১ — তত্ত্ব (Theory)
 
 **অবশ্যই থাকতে হবে:**
+
 - টপিকটা কী (সংজ্ঞা)
 - কেন দরকার (real-world use case)
 - মূল উপাদানসমূহ (বিস্তারিত, JSON example সহ যদি প্রযোজ্য হয়)
@@ -56,7 +64,7 @@ floci/
 
 **প্রতিটি ধাপের format:**
 
-```markdown
+````markdown
 ### ধাপ X — [ধাপের নাম]
 
 **কেন করছি?**
@@ -65,8 +73,10 @@ floci/
 ```bash
 command here
 ```
+````
 
 **প্রত্যাশিত output:**
+
 ```
 expected output here
 ```
@@ -74,15 +84,18 @@ expected output here
 [যদি output না আসে: `(কোনো output আসবে না — এটা স্বাভাবিক, মানে সফল হয়েছে)`]
 
 **যাচাই করো:**
+
 ```bash
 verification command
 ```
 
 **প্রত্যাশিত output:**
+
 ```
 verification output
 ```
-```
+
+````
 
 ---
 
@@ -97,9 +110,10 @@ eval $(floci env)
 
 # যাচাই করো
 echo $AWS_ENDPOINT_URL
-```
+````
 
 **Expected output:**
+
 ```
 http://localhost:4566
 ```
@@ -115,6 +129,7 @@ http://localhost:4566
 কারণ: training data-তে পুরনো tutorial এবং deprecated pattern থাকতে পারে (যেমন EC2-Classic-এর `--security-groups`, `--group-name` — যেটা VPC-তে কাজ করে না)।
 
 **নিয়ম:**
+
 - `--security-groups` না, সবসময় `--security-group-ids` (VPC-তে)
 - `--group-name` শুধু `create-security-group`-এ, reference করতে সবসময় `--group-id`
 - নতুন service-এর command লেখার আগে AWS docs search করো
@@ -123,14 +138,14 @@ http://localhost:4566
 
 ### Command Rules
 
-| নিষিদ্ধ (PowerShell) | সঠিক (Git Bash) |
-|----------------------|----------------|
-| `$env:VAR="value"` | `export VAR=value` বা `eval $(floci env)` |
-| `echo $env:VAR` | `echo $VAR` |
-| `"text" \| Out-File file.txt` | `echo "text" > file.txt` |
-| `Get-Content file.txt` | `cat file.txt` |
-| `cmd1; cmd2` | `cmd1 && cmd2` |
-| `irm url \| iex` | `curl -fsSL url \| sh` |
+| নিষিদ্ধ (PowerShell)          | সঠিক (Git Bash)                           |
+| ----------------------------- | ----------------------------------------- |
+| `$env:VAR="value"`            | `export VAR=value` বা `eval $(floci env)` |
+| `echo $env:VAR`               | `echo $VAR`                               |
+| `"text" \| Out-File file.txt` | `echo "text" > file.txt`                  |
+| `Get-Content file.txt`        | `cat file.txt`                            |
+| `cmd1; cmd2`                  | `cmd1 && cmd2`                            |
+| `irm url \| iex`              | `curl -fsSL url \| sh`                    |
 
 ### Floci-specific Rules
 
@@ -162,19 +177,68 @@ arn:aws:iam::aws:policy/AmazonEC2FullAccess   ← AWS managed policy (0000000000
 
 ```markdown
 ## দ্রুত তথ্যসূত্র — [টপিক] কমান্ড চিট শিট
+
 (table আকারে সব কমান্ড)
 
+## Real AWS Console-এ ফ্লো (রেফারেন্স)
+
+(hybrid text-flow + collapsed Mermaid diagram — নিচের "Console Flow Diagram Rule" দেখো)
+
 ## আজকে যা তৈরি করলে
+
 (tree diagram বা checklist)
 
 ## বাড়ির কাজ
+
 (৩টি practice task)
 
 ## রিসোর্স
+
 - Floci: https://floci.io
 - Floci AWS services: https://floci.io/aws
 - AWS official docs link
 ```
+
+---
+
+### Console Flow Diagram Rule
+
+প্রতিটি Day-এর ফাইলে চিট শিট-এর পরে, "আজকে যা তৈরি করলে"-এর আগে **"Real AWS Console-এ ফ্লো (রেফারেন্স)"** সেকশন থাকতে হবে — যাতে যারা পরে real AWS account-এ কাজ করবে তারা console-এ click flow-টাও বুঝতে পারে।
+
+**Format — hybrid (শুধু Mermaid না, note লম্বা হয়ে যায় বলে):**
+- সংক্ষিপ্ত এক লাইনের text arrow-flow সবসময় visible থাকবে (দ্রুত scan করার জন্য)
+- বিস্তারিত Mermaid diagram `<details>` ট্যাগে collapsed থাকবে (চাইলে ক্লিক করে খুলবে)
+
+**Example (EC2 Volume Attach/Detach):**
+
+````markdown
+## Real AWS Console-এ ফ্লো (রেফারেন্স)
+
+**সংক্ষেপে:**
+`EC2 Dashboard → Volumes → Create Volume → Select Volume → Attach → Mount (SSH) → Unmount → Detach`
+
+<details>
+<summary>📊 বিস্তারিত ভিজ্যুয়াল ডায়াগ্রাম দেখতে ক্লিক করো</summary>
+
+```mermaid
+flowchart TD
+    A[EC2 Dashboard] --> B[Volumes - Left Menu]
+    B --> C[Create Volume - select AZ]
+    C --> D[Volume Select করো]
+    D --> E["Actions → Attach Volume"]
+    E --> F[Instance + device name দাও]
+    F --> G[Instance-এ SSH → mount করো]
+    G --> H[কাজ শেষে unmount করো]
+    H --> I["Actions → Detach Volume"]
+    I --> J[Volume state: available]
+```
+
+</details>
+````
+
+**নিয়ম:**
+- Mermaid diagram-এ শুধু মূল ৫-৮টা step রাখো (প্রতিটা মাউস click না) — কম নোড = দ্রুত পড়া যায়
+- Text-flow-টা diagram-এর summary হিসেবে কাজ করবে, তাই দুইটাই সামঞ্জস্যপূর্ণ (consistent) হতে হবে
 
 ---
 
@@ -184,6 +248,7 @@ arn:aws:iam::aws:policy/AmazonEC2FullAccess   ← AWS managed policy (0000000000
 
 - [ ] Bengali ফাইল আছে (`DayX-bn-topic-floci.md`)
 - [ ] English ফাইল আছে (`DayX-en-topic-floci.md`)
+- [ ] উপরের দিকে ক্লিকযোগ্য সোশ্যাল মিডিয়া লিংক আছে (LinkedIn, YouTube, Telegram, Web Lab, Facebook)
 - [ ] Theory section সম্পূর্ণ (কী, কেন, উপাদান, best practices)
 - [ ] প্রতিটি ধাপে "কেন করছি" আছে
 - [ ] সব command Git Bash compatible
@@ -192,6 +257,7 @@ arn:aws:iam::aws:policy/AmazonEC2FullAccess   ← AWS managed policy (0000000000
 - [ ] `eval $(floci env)` দিয়ে env setup
 - [ ] Cleanup/delete section আছে
 - [ ] চিট শিট table আছে
+- [ ] "Real AWS Console-এ ফ্লো" সেকশন আছে (hybrid text-flow + collapsed Mermaid diagram)
 - [ ] বাড়ির কাজ আছে
 
 ---
@@ -200,31 +266,31 @@ arn:aws:iam::aws:policy/AmazonEC2FullAccess   ← AWS managed policy (0000000000
 
 `syllabus.md` দেখো। প্রতিটি Day-এর জন্য সিলেবাসে দেওয়া topic follow করো।
 
-| Day | Topic |
-|-----|-------|
-| 1 | Introduction + Floci Setup |
-| 2 | IAM |
-| 3 | EC2 Instances |
-| 4 | AWS Networking (VPC) |
-| 5 | AWS Security |
-| 6 | Route 53 |
-| 7 | Secure VPC + EC2 Project |
-| 9 | Amazon S3 |
-| 10 | AWS CLI |
-| 11 | CloudFormation |
-| 12 | CodeCommit |
-| 13 | CodePipeline |
-| 14 | CodeBuild |
-| 15 | CodeDeploy |
-| 16 | CloudWatch |
-| 17 | Lambda |
-| 18 | EventBridge |
-| 19 | CloudFront |
-| 20 | ECR |
-| 21 | ECS |
-| 22 | EKS |
-| 23 | Secrets Manager / SSM |
-| 24 | Terraform |
-| 25 | CloudTrail + Config |
-| 26 | ELB |
-| 30 | RDS |
+| Day | Topic                      |
+| --- | -------------------------- |
+| 1   | Introduction + Floci Setup |
+| 2   | IAM                        |
+| 3   | EC2 Instances              |
+| 4   | AWS Networking (VPC)       |
+| 5   | AWS Security               |
+| 6   | Route 53                   |
+| 7   | Secure VPC + EC2 Project   |
+| 9   | Amazon S3                  |
+| 10  | AWS CLI                    |
+| 11  | CloudFormation             |
+| 12  | CodeCommit                 |
+| 13  | CodePipeline               |
+| 14  | CodeBuild                  |
+| 15  | CodeDeploy                 |
+| 16  | CloudWatch                 |
+| 17  | Lambda                     |
+| 18  | EventBridge                |
+| 19  | CloudFront                 |
+| 20  | ECR                        |
+| 21  | ECS                        |
+| 22  | EKS                        |
+| 23  | Secrets Manager / SSM      |
+| 24  | Terraform                  |
+| 25  | CloudTrail + Config        |
+| 26  | ELB                        |
+| 30  | RDS                        |
