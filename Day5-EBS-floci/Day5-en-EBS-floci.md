@@ -546,30 +546,101 @@ sudo mount -a
 
 ### Resize the Filesystem After Expanding the Volume
 
+> **When this section applies:**
+> Your volume is already mounted and in use — then you increased its size in AWS (e.g. 10G → 20G). SSH into the instance and run the commands below.
+>
+> **If you just created and formatted a new volume for the first time, skip this section** — `mkfs` already uses the full disk size.
+
 **Why:** Expanding the volume in AWS only grows the physical disk — the OS still sees the old size because the filesystem is still using the old boundary. You must tell the filesystem to expand into the newly available space.
 
-**Grow the partition:**
+---
 
-```bash
-sudo growpart /dev/xvda 1
+**Step 1 — Increase Volume Size from AWS Console**
+
+**Why:** This is the main action — telling AWS to grow the physical disk. The instance does not need to stop.
+
+```
+EC2 Dashboard
+  → Elastic Block Store → Volumes
+  → Select the volume
+  → Actions → Modify Volume
+  → Size: 10 → 20 (however many GB you need)
+  → Modify → Confirm
 ```
 
-**Resize XFS filesystem (Amazon Linux 2023):**
-
-```bash
-sudo xfs_growfs -d /
+Volume state will change:
+```
+in-use → optimizing → in-use (completed)
 ```
 
-**Resize ext4 filesystem:**
+> You can also use the CLI:
+> ```bash
+> aws ec2 modify-volume --volume-id vol-xxxxxxxxx --size 20
+> ```
+
+---
+
+**Step 2 — SSH into the Instance and Verify**
+
+**Why:** Confirm that the OS can see the new disk size but the filesystem has not caught up yet.
 
 ```bash
-sudo resize2fs /dev/xvdf
+lsblk
 ```
 
-**Verify:**
+**Expected output:**
+```
+nvme1n1   259:4   0  20G  0 disk    ← disk is now 20G
+```
 
 ```bash
 df -h
+```
+
+**Expected output:**
+```
+/dev/nvme1n1   9.8G  ... /data      ← filesystem still shows old size
+```
+
+> This gap is the point — the disk grew but the filesystem boundary has not moved yet.
+
+---
+
+**Step 3 — Resize the Filesystem**
+
+**Which command to use:**
+
+| Disk type | Command |
+|-----------|---------|
+| Root disk (has partitions — nvme0n1p1) | `growpart /dev/nvme0n1 1` then `xfs_growfs -d /` |
+| Data disk (no partition — nvme1n1) | Only `resize2fs /dev/nvme1n1` |
+
+> **Device name note:** Even if you attached with `--device /dev/xvdf`, modern AWS instances show it as `nvme1n1` in `lsblk`. AWS maps it internally — this is normal.
+
+**Root disk resize (XFS — Amazon Linux 2023):**
+
+```bash
+sudo growpart /dev/nvme0n1 1
+sudo xfs_growfs -d /
+```
+
+**Data disk resize (ext4, no partition — your case):**
+
+```bash
+sudo resize2fs /dev/nvme1n1
+```
+
+---
+
+**Step 4 — Verify**
+
+```bash
+df -h
+```
+
+**Expected output:**
+```
+/dev/nvme1n1   20G  ... /data      ← now shows 20G ✅
 ```
 
 ---

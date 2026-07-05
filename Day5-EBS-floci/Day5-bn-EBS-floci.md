@@ -554,30 +554,101 @@ sudo mount -a
 
 ### Volume Size বাড়ানোর পর Filesystem Resize করো
 
+> **কখন এই section লাগবে:**
+> Volume already mounted এবং ব্যবহার হচ্ছে — এরপর AWS Console বা CLI থেকে size বাড়িয়েছ (যেমন 10G → 20G)। তখন instance-এ SSH করে নিচের command চালাও।
+>
+> **নতুন volume তৈরি করে প্রথমবার format করলে এই section লাগবে না** — `mkfs` করার সময়ই পুরো disk নেয়।
+
 **কেন করছি?** AWS থেকে volume বড় করলে শুধু physical disk-এর size বাড়ে — কিন্তু OS এখনও পুরনো size দেখে, কারণ filesystem সেই পুরনো boundary অনুযায়ী কাজ করছে। নতুন space ব্যবহার করতে হলে filesystem-কেও বলতে হবে "তুমি এখন বড়।"
 
-**Partition বড় করো:**
+---
 
-```bash
-sudo growpart /dev/xvda 1
+**ধাপ ১ — AWS Console থেকে Volume Size বাড়াও**
+
+**কেন করছি?** এটাই মূল কাজ — AWS-কে বলছি "এই disk-এর physical size বাড়াও।" Instance বন্ধ করতে হবে না।
+
+```
+EC2 Dashboard
+  → Elastic Block Store → Volumes
+  → Volume select করো
+  → Actions → Modify Volume
+  → Size: 10 → 20 (যত GB চাও)
+  → Modify → Confirm
 ```
 
-**Filesystem resize করো (XFS — Amazon Linux 2023):**
-
-```bash
-sudo xfs_growfs -d /
+Volume-এর State পরিবর্তন হবে:
+```
+in-use → optimizing → in-use (completed)
 ```
 
-**Filesystem resize করো (ext4):**
+> CLI দিয়েও করা যায়:
+> ```bash
+> aws ec2 modify-volume --volume-id vol-xxxxxxxxx --size 20
+> ```
+
+---
+
+**ধাপ ২ — Instance-এ SSH করো এবং যাচাই করো**
+
+**কেন করছি?** Console-এ size বাড়ানো হয়েছে কিনা এবং OS দেখতে পাচ্ছে কিনা সেটা check করি।
 
 ```bash
-sudo resize2fs /dev/xvdf
+lsblk
 ```
 
-**যাচাই করো:**
+**প্রত্যাশিত output:**
+```
+nvme1n1   259:4   0  20G  0 disk    ← disk এখন 20G
+```
 
 ```bash
 df -h
+```
+
+**প্রত্যাশিত output:**
+```
+/dev/nvme1n1   9.8G  ... /data      ← কিন্তু filesystem এখনও পুরনো size
+```
+
+> এই পার্থক্যটাই বলছে — disk বড় হয়েছে, কিন্তু filesystem এখনও পুরনো boundary-তে আছে।
+
+---
+
+**ধাপ ৩ — Filesystem Resize করো**
+
+**কোন command কখন লাগবে:**
+
+| Disk type | Command |
+|-----------|---------|
+| Root disk (partition আছে — nvme0n1p1) | `growpart /dev/nvme0n1 1` তারপর `xfs_growfs -d /` |
+| Data disk (partition নেই — nvme1n1) | শুধু `resize2fs /dev/nvme1n1` |
+
+> **Device name সম্পর্কে:** `--device /dev/xvdf` দিয়ে attach করলেও modern AWS instance-এ `lsblk`-এ `nvme1n1` দেখাবে। AWS internally map করে — এটা normal।
+
+**Root disk resize (XFS — Amazon Linux 2023):**
+
+```bash
+sudo growpart /dev/nvme0n1 1
+sudo xfs_growfs -d /
+```
+
+**Data disk resize (ext4, partition ছাড়া — তোমার case):**
+
+```bash
+sudo resize2fs /dev/nvme1n1
+```
+
+---
+
+**ধাপ ৪ — যাচাই করো**
+
+```bash
+df -h
+```
+
+**প্রত্যাশিত output:**
+```
+/dev/nvme1n1   20G  ... /data      ← এখন 20G দেখাচ্ছে ✅
 ```
 
 ---
