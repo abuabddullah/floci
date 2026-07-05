@@ -1,0 +1,4 @@
+sg-77903c7544c0a6861
+"InstanceId": "i-e13679479315bb70b"
+"AvailabilityZone": "us-east-1c"
+ "VolumeId": "vol-00de909a8a110fdfe"

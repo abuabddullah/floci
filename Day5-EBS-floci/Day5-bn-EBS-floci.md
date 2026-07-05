@@ -28,15 +28,20 @@
 
 Amazon EBS হলো AWS-এর block storage service। এটা EC2 instance-এর জন্য **persistent hard disk**-এর মতো কাজ করে।
 
-```
-তোমার PC                      AWS Cloud
-┌─────────────┐               ┌──────────────────────────────┐
-│             │               │  EC2 Instance                │
-│  Hard Disk  │  ≈ equivalent │  ┌──────────┐  ┌──────────┐ │
-│  (local)    │               │  │ OS disk  │  │ EBS Vol  │ │
-│             │               │  │ (root)   │  │ (data)   │ │
-└─────────────┘               │  └──────────┘  └──────────┘ │
-                              └──────────────────────────────┘
+```mermaid
+graph LR
+    subgraph PC["তোমার PC"]
+        HD["Hard Disk (local)"]
+    end
+
+    HD -->|"≈ equivalent"| EBS
+
+    subgraph Cloud["AWS Cloud"]
+        subgraph EC2["EC2 Instance"]
+            OS["OS disk (root)"]
+            EBS["EBS Vol (data)"]
+        end
+    end
 ```
 
 **মূল বৈশিষ্ট্য:**
@@ -82,12 +87,19 @@ Amazon EBS হলো AWS-এর block storage service। এটা EC2 instance-
 
 **গুরুত্বপূর্ণ নিয়ম:** EBS volume এবং EC2 instance **একই AZ**-এ থাকতে হবে।
 
-```
-us-east-1a                    us-east-1b
-┌──────────────────┐          ┌──────────────────┐
-│  EC2 Instance    │          │                  │
-│  EBS Volume ✅   │          │  EBS Volume ❌   │ ← attach হবে না
-└──────────────────┘          └──────────────────┘
+```mermaid
+graph LR
+    subgraph AZ1["us-east-1a ✅"]
+        EC2["EC2 Instance"]
+        VOL1["EBS Volume"]
+        EC2 --- VOL1
+    end
+
+    subgraph AZ2["us-east-1b ❌"]
+        VOL2["EBS Volume\n(attach হবে না)"]
+    end
+
+    VOL2 -. "❌ different AZ" .-> EC2
 ```
 
 ---
@@ -107,9 +119,18 @@ us-east-1a                    us-east-1b
 
 ## পার্ট ২ — Floci দিয়ে হাতে-কলমে (CLI)
 
-> **মনে রেখো:** Floci-তে EBS **API simulation** — real disk নেই।
-> Volume তৈরি, attach, detach করতে পারবে কিন্তু mount/format কাজ করবে না।
-> উদ্দেশ্য: CLI command এবং workflow শেখা।
+> **Floci-তে EBS support:**
+>
+> | কমান্ড | Floci |
+> |--------|-------|
+> | `create-volume` | ✅ কাজ করে |
+> | `describe-volumes` | ✅ কাজ করে |
+> | `delete-volume` | ✅ কাজ করে |
+> | `modify-volume` | ❌ `UnsupportedOperation` |
+> | `attach-volume` | ❌ `UnsupportedOperation` |
+> | `detach-volume` | ❌ `UnsupportedOperation` |
+>
+> Attach/detach workflow শেখার জন্য command syntax জানো — Real AWS-এ হুবহু একই command কাজ করবে।
 
 ---
 
@@ -229,6 +250,8 @@ aws ec2 describe-volumes --output table
 **কেন করছি?**
 Volume তৈরি করা মানে hard disk কেনা। Attach করা মানে সেই disk server-এ লাগানো। Attach না করলে OS দেখতে পাবে না।
 
+> ⚠️ **Floci note:** `attach-volume` Floci-তে `UnsupportedOperation` error দেবে — এটা স্বাভাবিক। Command syntax মনে রাখো, Real AWS-এ হুবহু কাজ করবে।
+
 ```bash
 aws ec2 attach-volume \
   --volume-id vol-xxxxxxxxxxxxxxxxx \
@@ -293,6 +316,8 @@ aws ec2 create-tags \
 **কেন করছি?**
 EBS-এর সবচেয়ে বড় সুবিধা — চলতে চলতে size বাড়ানো যায়। Production-এ disk full হলে server বন্ধ না করেই 5 GB থেকে 10 GB করা যায়।
 
+> ⚠️ **Floci note:** `modify-volume` Floci-তে `UnsupportedOperation` দেবে। Real AWS-এ কাজ করবে।
+
 ```bash
 aws ec2 modify-volume \
   --volume-id vol-xxxxxxxxxxxxxxxxx \
@@ -340,6 +365,8 @@ aws ec2 describe-volumes \
 
 **কেন করছি?**
 Volume অন্য instance-এ লাগাতে হলে বা delete করতে হলে আগে detach করতে হবে।
+
+> ⚠️ **Floci note:** `detach-volume`-ও Floci-তে `UnsupportedOperation` দেবে। Real AWS-এ কাজ করবে।
 
 ```bash
 aws ec2 detach-volume \
@@ -600,17 +627,17 @@ df -h
 
 ```mermaid
 flowchart TD
-    A[EC2 Dashboard] --> B[Elastic Block Store → Volumes]
-    B --> C[Create Volume\nSize + Type + AZ বেছে নাও]
+    A[EC2 Dashboard] --> B[Elastic Block Store - Volumes]
+    B --> C[Create Volume - Size + Type + AZ]
     C --> D[Volume state: available]
-    D --> E[Volume Select করো\nActions → Attach Volume]
-    E --> F[Instance + device name দাও\n/dev/xvdf]
+    D --> E[Volume Select - Actions - Attach Volume]
+    E --> F[Instance + device xvdf]
     F --> G[Volume state: attached]
-    G --> H[Instance-এ SSH করো]
-    H --> I[lsblk → mkfs → mkdir /data → mount]
-    I --> J[/etc/fstab-এ UUID যোগ করো\nnofail সহ]
-    J --> K[কাজ শেষে: umount /data]
-    K --> L[Actions → Detach Volume]
+    G --> H[SSH into Instance]
+    H --> I[lsblk - mkfs - mkdir data - mount]
+    I --> J[fstab - UUID nofail]
+    J --> K[umount data]
+    K --> L[Actions - Detach Volume]
     L --> M[Volume state: available]
 ```
 

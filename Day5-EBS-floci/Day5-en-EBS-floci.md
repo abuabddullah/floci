@@ -28,15 +28,20 @@
 
 Amazon EBS is AWS's block storage service. It works like a **persistent hard disk** for EC2 instances.
 
-```
-Your PC                       AWS Cloud
-┌─────────────┐               ┌──────────────────────────────┐
-│             │               │  EC2 Instance                │
-│  Hard Disk  │  ≈ equivalent │  ┌──────────┐  ┌──────────┐ │
-│  (local)    │               │  │ OS disk  │  │ EBS Vol  │ │
-│             │               │  │ (root)   │  │ (data)   │ │
-└─────────────┘               │  └──────────┘  └──────────┘ │
-                              └──────────────────────────────┘
+```mermaid
+graph LR
+    subgraph PC["Your PC"]
+        HD["Hard Disk (local)"]
+    end
+
+    HD -->|"≈ equivalent"| EBS
+
+    subgraph Cloud["AWS Cloud"]
+        subgraph EC2["EC2 Instance"]
+            OS["OS disk (root)"]
+            EBS["EBS Vol (data)"]
+        end
+    end
 ```
 
 **Key properties:**
@@ -82,12 +87,19 @@ Your PC                       AWS Cloud
 
 **Important rule:** An EBS volume and the EC2 instance must be in the **same AZ**.
 
-```
-us-east-1a                    us-east-1b
-┌──────────────────┐          ┌──────────────────┐
-│  EC2 Instance    │          │                  │
-│  EBS Volume ✅   │          │  EBS Volume ❌   │ ← cannot attach
-└──────────────────┘          └──────────────────┘
+```mermaid
+graph LR
+    subgraph AZ1["us-east-1a ✅"]
+        EC2["EC2 Instance"]
+        VOL1["EBS Volume"]
+        EC2 --- VOL1
+    end
+
+    subgraph AZ2["us-east-1b ❌"]
+        VOL2["EBS Volume - cannot attach"]
+    end
+
+    VOL2 -. "❌ different AZ" .-> EC2
 ```
 
 ---
@@ -107,9 +119,18 @@ us-east-1a                    us-east-1b
 
 ## Part 2 — Hands-On with Floci (CLI)
 
-> **Remember:** Floci simulates the EBS API — no real disk exists.
-> You can create, attach, and detach volumes, but mount/format operations won't work.
-> Goal: learn the CLI workflow and commands.
+> **Floci EBS support:**
+>
+> | Command | Floci |
+> |---------|-------|
+> | `create-volume` | ✅ works |
+> | `describe-volumes` | ✅ works |
+> | `delete-volume` | ✅ works |
+> | `modify-volume` | ❌ `UnsupportedOperation` |
+> | `attach-volume` | ❌ `UnsupportedOperation` |
+> | `detach-volume` | ❌ `UnsupportedOperation` |
+>
+> Learn the attach/detach syntax here — the exact same commands work on real AWS.
 
 ---
 
@@ -225,6 +246,8 @@ aws ec2 describe-volumes --output table
 
 **Why:** Creating a volume is buying the disk; attaching it is plugging it into the server. Without attaching, the OS cannot see the disk.
 
+> ⚠️ **Floci note:** `attach-volume` returns `UnsupportedOperation` in Floci — this is expected. Learn the syntax here; it works identically on real AWS.
+
 ```bash
 aws ec2 attach-volume \
   --volume-id vol-xxxxxxxxxxxxxxxxx \
@@ -287,6 +310,8 @@ aws ec2 create-tags \
 
 **Why:** One of EBS's biggest advantages is live resizing. In production, if a disk fills up you can expand from 5 GB to 10 GB without stopping the instance.
 
+> ⚠️ **Floci note:** `modify-volume` returns `UnsupportedOperation` in Floci. Works on real AWS.
+
 ```bash
 aws ec2 modify-volume \
   --volume-id vol-xxxxxxxxxxxxxxxxx \
@@ -333,6 +358,8 @@ aws ec2 describe-volumes \
 ### Step 6 — Detach the Volume
 
 **Why:** Before moving a volume to another instance or deleting it, it must be detached first.
+
+> ⚠️ **Floci note:** `detach-volume` also returns `UnsupportedOperation` in Floci. Works on real AWS.
 
 ```bash
 aws ec2 detach-volume \
@@ -592,17 +619,17 @@ df -h
 
 ```mermaid
 flowchart TD
-    A[EC2 Dashboard] --> B[Elastic Block Store → Volumes]
-    B --> C[Create Volume\nSize + Type + AZ]
+    A[EC2 Dashboard] --> B[Elastic Block Store - Volumes]
+    B --> C[Create Volume - Size + Type + AZ]
     C --> D[Volume state: available]
-    D --> E[Select Volume\nActions → Attach Volume]
-    E --> F[Choose Instance + device name\n/dev/xvdf]
+    D --> E[Select Volume - Actions - Attach Volume]
+    E --> F[Choose Instance + device xvdf]
     F --> G[Volume state: attached]
     G --> H[SSH into Instance]
-    H --> I[lsblk → mkfs → mkdir /data → mount]
-    I --> J[Add UUID to /etc/fstab\nwith nofail]
-    J --> K[When done: umount /data]
-    K --> L[Actions → Detach Volume]
+    H --> I[lsblk - mkfs - mkdir data - mount]
+    I --> J[fstab - UUID nofail]
+    J --> K[umount data]
+    K --> L[Actions - Detach Volume]
     L --> M[Volume state: available]
 ```
 

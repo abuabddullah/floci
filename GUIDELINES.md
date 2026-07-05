@@ -164,6 +164,16 @@ arn:aws:iam::000000000000:policy/MyPolicy
 arn:aws:iam::aws:policy/AmazonEC2FullAccess   ← AWS managed policy (000000000000 না)
 ```
 
+### Diagram Rules
+
+- সব diagram **Mermaid** format-এ লিখতে হবে — ASCII art (` ┌──┐ │ └──┘ `) নিষিদ্ধ
+- Architecture বা component relationship → `graph LR` (পাশাপাশি দেখাতে) বা `graph TB` (উপর-নিচ)
+- Step-by-step process বা console flow → `flowchart TD`
+- Console Flow section-এর বিস্তারিত diagram `<details>` ট্যাগে collapsed রাখো
+- Node label-এ `\n`, `→`, `/` ব্যবহার করো না — Mermaid lexical error হয়। পরিবর্তে `-` বা সহজ শব্দ ব্যবহার করো (যেমন `/dev/xvdf` → `xvdf`, `/etc/fstab` → `fstab`)
+
+---
+
 ### Output Rules
 
 - প্রতিটি command-এর পরে **প্রত্যাশিত output** দিতে হবে

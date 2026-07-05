@@ -1,0 +1,420 @@
+====================================
+Tutorial Started
+
+Time:               2026-07-05 09:18:53
+Working Directory:  /d/devops/floci
+Git Branch:         feat/day-5
+Log File:           /d/devops/floci/Day5-EBS-floci/Day5-EBS-floci.log
+====================================
+
+
+$ floci start --persist ./floci-data
+Error: Failed to inspect container: failed to connect to the docker API at npipe:////./pipe/dockerDesktopLinuxEngine; check if the path is correct and if the daemon is running: open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified.
+
+
+$ eval $(floci env)
+
+$ floci start --persist ./floci-data
+Removing stopped container 'floci'...
+Checking image floci/floci:latest (policy: missing)...
+Starting Floci container...
+Container started (782b50597437)
+Waiting for Floci to be ready...
+Waiting... (29s remaining)   Floci is ready (http://localhost:4566)
+
+$ eval $(floci env)
+
+$ echo $AWS_ENDPOINT_URL
+http://localhost.floci.io:4566
+
+$ aws ec2 create-key-pair --key-name my-ec2-key
+
+An error occurred (InvalidKeyPair.Duplicate) when calling the CreateKeyPair operation: The keypair 'my-ec2-key' already exists
+
+$ aws ec2 describe-key-pairs
+{
+    "KeyPairs": [
+        {
+            "KeyPairId": "key-109a7bc2320f3f07d",
+            "Tags": [],
+            "KeyName": "my-ec2-key",
+            "KeyFingerprint": "00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00"
+        },
+        {
+            "KeyPairId": "key-f61fa6f0b64c9b91c",
+            "Tags": [],
+            "KeyName": "floci-ec3-key",
+            "KeyFingerprint": "00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00"
+        }
+    ]
+}
+
+$ aws ec2 create-security-group   --group-name my-ec2-sg   --description "EC2 SG"
+
+An error occurred (InvalidGroup.Duplicate) when calling the CreateSecurityGroup operation: The security group 'my-ec2-sg' already exists
+
+$ aws ec2 describe-security-groups   --query 'SecurityGroups[?GroupName==`my-ec2-sg`].GroupId'   --output text
+sg-77903c7544c0a6861
+
+$ echo "sg-77903c7544c0a6861" > Day5-EBS-floci/cred.txt
+
+$ cat Day5-EBS-floci/cred.txt 
+sg-77903c7544c0a6861
+
+$ aws ec2 run-instances   --image-id ami-12345678   --instance-type t2.micro   --key-name my-ec2-key   --security-group-ids sg-77903c7544c0a6861   --count 1
+{
+    "ReservationId": "r-e5daac830cf62b80b",
+    "OwnerId": "000000000000",
+    "Groups": [],
+    "Instances": [
+        {
+            "Architecture": "x86_64",
+            "BlockDeviceMappings": [
+                {
+                    "DeviceName": "/dev/xvda",
+                    "Ebs": {
+                        "AttachTime": "2026-07-05T03:23:20.251000+00:00",
+                        "DeleteOnTermination": true,
+                        "Status": "attached",
+                        "VolumeId": "vol-e6a75a145799c8353"
+                    }
+                }
+            ],
+            "ClientToken": "df683bed-7e3c-4922-bebd-c4f2e3f96dae",
+            "EbsOptimized": false,
+            "EnaSupport": true,
+            "Hypervisor": "xen",
+            "NetworkInterfaces": [
+                {
+                    "Attachment": {
+                        "AttachTime": "2026-07-05T03:23:20.251000+00:00",
+                        "AttachmentId": "eni-attach-a83c45c10bbb91ec0",
+                        "DeleteOnTermination": true,
+                        "DeviceIndex": 0,
+                        "Status": "attached"
+                    },
+                    "Groups": [
+                        {
+                            "GroupId": "sg-77903c7544c0a6861",
+                            "GroupName": "my-ec2-sg"
+                        }
+                    ],
+                    "NetworkInterfaceId": "eni-62da11db8044af1f3",
+                    "OwnerId": "000000000000",
+                    "PrivateDnsName": "ip-172-31-32-10.ec2.internal",
+                    "PrivateIpAddress": "172.31.32.10",
+                    "PrivateIpAddresses": [
+                        {
+                            "Primary": true,
+                            "PrivateDnsName": "ip-172-31-32-10.ec2.internal",
+                            "PrivateIpAddress": "172.31.32.10"
+                        }
+                    ],
+                    "SourceDestCheck": true,
+                    "Status": "in-use",
+                    "SubnetId": "subnet-default-c",
+                    "VpcId": "vpc-default"
+                }
+            ],
+            "RootDeviceName": "/dev/xvda",
+            "RootDeviceType": "ebs",
+            "SecurityGroups": [
+                {
+                    "GroupId": "sg-77903c7544c0a6861",
+                    "GroupName": "my-ec2-sg"
+                }
+            ],
+            "SourceDestCheck": true,
+            "Tags": [],
+            "VirtualizationType": "hvm",
+            "CpuOptions": {
+                "CoreCount": 1,
+                "ThreadsPerCore": 1
+            },
+            "CapacityReservationSpecification": {
+                "CapacityReservationPreference": "open"
+            },
+            "HibernationOptions": {
+                "Configured": false
+            },
+            "MetadataOptions": {
+                "State": "applied",
+                "HttpTokens": "optional",
+                "HttpPutResponseHopLimit": 1,
+                "HttpEndpoint": "enabled",
+                "HttpProtocolIpv6": "disabled",
+                "InstanceMetadataTags": "disabled"
+            },
+            "EnclaveOptions": {
+                "Enabled": false
+            },
+            "PrivateDnsNameOptions": {
+                "HostnameType": "ip-name",
+                "EnableResourceNameDnsARecord": false,
+                "EnableResourceNameDnsAAAARecord": false
+            },
+            "MaintenanceOptions": {
+                "AutoRecovery": "default"
+            },
+            "InstanceId": "i-e13679479315bb70b",
+            "ImageId": "ami-12345678",
+            "State": {
+                "Code": 0,
+                "Name": "pending"
+            },
+            "PrivateDnsName": "ip-172-31-32-10.ec2.internal",
+            "KeyName": "my-ec2-key",
+            "AmiLaunchIndex": 0,
+            "InstanceType": "t2.micro",
+            "LaunchTime": "2026-07-05T03:23:20.251000+00:00",
+            "Placement": {
+                "Tenancy": "default",
+                "AvailabilityZone": "us-east-1c"
+            },
+            "Monitoring": {
+                "State": "disabled"
+            },
+            "SubnetId": "subnet-default-c",
+            "VpcId": "vpc-default",
+            "PrivateIpAddress": "172.31.32.10"
+        }
+    ]
+}
+
+$ echo '"InstanceId": "i-e13679479315bb70b"' >> Day5-EBS-floci/cred.txt 
+
+$ cat Day5-EBS-floci/cred.txt 
+sg-77903c7544c0a6861
+"InstanceId": "i-e13679479315bb70b"
+
+$ aws ec2 describe-instances   --query 'Reservations[*].Instances[*].[InstanceId,State.Name]'   --output table
+------------------------------------------
+|            DescribeInstances           |
++----------------------+-----------------+
+|  i-e13679479315bb70b |  running        |
+|  i-0250b77a06a129a2e |  running        |
+|  i-f78ff5b068e5e2452 |  running        |
+|  i-df17e803238c283b5 |  shutting-down  |
++----------------------+-----------------+
+
+$ echo '"AvailabilityZone": "us-east-1c"' >> Day5-EBS-floci/cred.txt 
+
+$ cat Day5-EBS-floci/cred.txt 
+sg-77903c7544c0a6861
+"InstanceId": "i-e13679479315bb70b"
+"AvailabilityZone": "us-east-1c"
+
+$ aws ec2 create-volume   --size 5   --volume-type gp3   --availability-zone us-east-1c
+{
+    "Tags": [],
+    "VolumeType": "gp3",
+    "Throughput": 125,
+    "VolumeId": "vol-00de909a8a110fdfe",
+    "Size": 5,
+    "AvailabilityZone": "us-east-1c",
+    "State": "available",
+    "CreateTime": "2026-07-05T03:26:01.970000+00:00",
+    "Attachments": [],
+    "Encrypted": false
+}
+
+$ echo ' "VolumeId": "vol-00de909a8a110fdfe"' >> Day5-EBS-floci/cred.txt 
+
+$ cat Day5-EBS-floci/cred.txt 
+sg-77903c7544c0a6861
+"InstanceId": "i-e13679479315bb70b"
+"AvailabilityZone": "us-east-1c"
+ "VolumeId": "vol-00de909a8a110fdfe"
+
+$ aws ec2 describe-volumes --output table
+-----------------------------------------------------------------
+|                        DescribeVolumes                        |
++---------------------------------------------------------------+
+||                           Volumes                           ||
+|+--------------------+----------------------------------------+|
+||  AvailabilityZone  |  us-east-1c                            ||
+||  CreateTime        |  2026-07-03T14:18:29.909000+00:00      ||
+||  Encrypted         |  False                                 ||
+||  Size              |  8                                     ||
+||  State             |  in-use                                ||
+||  Throughput        |                                        ||
+||  VolumeId          |  vol-2fd8fb079252e57a4                 ||
+||  VolumeType        |  gp3                                   ||
+|+--------------------+----------------------------------------+|
+|||                        Attachments                        |||
+||+----------------------+------------------------------------+||
+|||  AttachTime          |  2026-07-03T14:18:29.909000+00:00  |||
+|||  DeleteOnTermination |  True                              |||
+|||  Device              |  /dev/xvda                         |||
+|||  InstanceId          |  i-0250b77a06a129a2e               |||
+|||  State               |  attached                          |||
+|||  VolumeId            |  vol-2fd8fb079252e57a4             |||
+||+----------------------+------------------------------------+||
+||                           Volumes                           ||
+|+--------------------+----------------------------------------+|
+||  AvailabilityZone  |  us-east-1c                            ||
+||  CreateTime        |  2026-07-05T03:26:01.970000+00:00      ||
+||  Encrypted         |  False                                 ||
+||  Size              |  5                                     ||
+||  State             |  available                             ||
+||  Throughput        |  125                                   ||
+||  VolumeId          |  vol-00de909a8a110fdfe                 ||
+||  VolumeType        |  gp3                                   ||
+|+--------------------+----------------------------------------+|
+||                           Volumes                           ||
+|+--------------------+----------------------------------------+|
+||  AvailabilityZone  |  us-east-1c                            ||
+||  CreateTime        |  2026-07-05T03:23:20.251000+00:00      ||
+||  Encrypted         |  False                                 ||
+||  Size              |  8                                     ||
+||  State             |  in-use                                ||
+||  Throughput        |                                        ||
+||  VolumeId          |  vol-e6a75a145799c8353                 ||
+||  VolumeType        |  gp3                                   ||
+|+--------------------+----------------------------------------+|
+|||                        Attachments                        |||
+||+----------------------+------------------------------------+||
+|||  AttachTime          |  2026-07-05T03:23:20.251000+00:00  |||
+|||  DeleteOnTermination |  True                              |||
+|||  Device              |  /dev/xvda                         |||
+|||  InstanceId          |  i-e13679479315bb70b               |||
+|||  State               |  attached                          |||
+|||  VolumeId            |  vol-e6a75a145799c8353             |||
+||+----------------------+------------------------------------+||
+||                           Volumes                           ||
+|+--------------------+----------------------------------------+|
+||  AvailabilityZone  |  us-east-1c                            ||
+||  CreateTime        |  2026-07-03T16:17:10.255000+00:00      ||
+||  Encrypted         |  False                                 ||
+||  Size              |  8                                     ||
+||  State             |  in-use                                ||
+||  Throughput        |                                        ||
+||  VolumeId          |  vol-c6762c509f388a51b                 ||
+||  VolumeType        |  gp3                                   ||
+|+--------------------+----------------------------------------+|
+|||                        Attachments                        |||
+||+----------------------+------------------------------------+||
+|||  AttachTime          |  2026-07-03T16:17:10.255000+00:00  |||
+|||  DeleteOnTermination |  True                              |||
+|||  Device              |  /dev/xvda                         |||
+|||  InstanceId          |  i-f78ff5b068e5e2452               |||
+|||  State               |  attached                          |||
+|||  VolumeId            |  vol-c6762c509f388a51b             |||
+||+----------------------+------------------------------------+||
+
+$ aws ec2 attach-volume   --volume-id vol-00de909a8a110fdfe   --instance-id i-e13679479315bb70b   --device /dev/xvdf
+
+An error occurred (UnsupportedOperation) when calling the AttachVolume operation: Operation AttachVolume is not supported.
+
+$ aws ec2 describe-volumes   --volume-ids vol-vol-00de909a8a110fdfe   --query 'Volumes[0].Attachments'
+
+An error occurred (InvalidVolume.NotFound) when calling the DescribeVolumes operation: The volume 'vol-vol-00de909a8a110fdfe' does not exist.
+
+$ aws ec2 create-tags   --resources vol-vol-00de909a8a110fdfe  --tags Key=Name,Value=my-data-volume Key=Environment,Value=dev
+
+$ aws ec2 modify-volume   --volume-id vol-00de909a8a110fdfe  --size 10
+
+An error occurred (UnsupportedOperation) when calling the ModifyVolume operation: Operation ModifyVolume is not supported.
+
+$ aws ec2 describe-volumes   --volume-ids vol-00de909a8a110fdfe   --query 'Volumes[0].Size'
+5
+
+$ stoplog
+
+====================================
+Tutorial Finished
+Time: 2026-07-05 09:44:24
+====================================
+====================================
+Tutorial Started
+
+Time:               2026-07-05 09:46:31
+Working Directory:  /d/devops/floci
+Git Branch:         feat/day-5
+Log File:           /d/devops/floci/Day5-EBS-floci/Day5-EBS-floci.log
+====================================
+
+
+$ aws ec2 detach-volume   --volume-id vol-00de909a8a110fdfe
+
+An error occurred (UnsupportedOperation) when calling the DetachVolume operation: Operation DetachVolume is not supported.
+
+$ aws ec2 describe-volumes   --volume-ids vol-00de909a8a110fdfe   --query 'Volumes[0].State'   --output text
+available
+
+$ aws ec2 delete-volume   --volume-id vol-00de909a8a110fdfe
+
+$ aws ec2 describe-volumes
+{
+    "Volumes": [
+        {
+            "Tags": [],
+            "VolumeType": "gp3",
+            "VolumeId": "vol-2fd8fb079252e57a4",
+            "Size": 8,
+            "AvailabilityZone": "us-east-1c",
+            "State": "in-use",
+            "CreateTime": "2026-07-03T14:18:29.909000+00:00",
+            "Attachments": [
+                {
+                    "DeleteOnTermination": true,
+                    "VolumeId": "vol-2fd8fb079252e57a4",
+                    "InstanceId": "i-0250b77a06a129a2e",
+                    "Device": "/dev/xvda",
+                    "State": "attached",
+                    "AttachTime": "2026-07-03T14:18:29.909000+00:00"
+                }
+            ],
+            "Encrypted": false
+        },
+        {
+            "Tags": [],
+            "VolumeType": "gp3",
+            "VolumeId": "vol-e6a75a145799c8353",
+            "Size": 8,
+            "AvailabilityZone": "us-east-1c",
+            "State": "in-use",
+            "CreateTime": "2026-07-05T03:23:20.251000+00:00",
+            "Attachments": [
+                {
+                    "DeleteOnTermination": true,
+                    "VolumeId": "vol-e6a75a145799c8353",
+                    "InstanceId": "i-e13679479315bb70b",
+                    "Device": "/dev/xvda",
+                    "State": "attached",
+                    "AttachTime": "2026-07-05T03:23:20.251000+00:00"
+                }
+            ],
+            "Encrypted": false
+        },
+        {
+            "Tags": [],
+            "VolumeType": "gp3",
+            "VolumeId": "vol-c6762c509f388a51b",
+            "Size": 8,
+            "AvailabilityZone": "us-east-1c",
+            "State": "in-use",
+            "CreateTime": "2026-07-03T16:17:10.255000+00:00",
+            "Attachments": [
+                {
+                    "DeleteOnTermination": true,
+                    "VolumeId": "vol-c6762c509f388a51b",
+                    "InstanceId": "i-f78ff5b068e5e2452",
+                    "Device": "/dev/xvda",
+                    "State": "attached",
+                    "AttachTime": "2026-07-03T16:17:10.255000+00:00"
+                }
+            ],
+            "Encrypted": false
+        }
+    ]
+}
+
+$ aws ec2 describe-volumes | grep vol-00de909a8a110fdfe
+
+$ stoplog
+
+====================================
+Tutorial Finished
+Time: 2026-07-05 09:51:00
+====================================
