@@ -154,6 +154,43 @@ http://localhost:4566
 - **Start command:** সবসময় `floci start --persist ./floci-data` — `--persist` ছাড়া data হারিয়ে যায়
 - **Env setup:** `eval $(floci env)` — Git Bash window বন্ধ করলে আবার দিতে হবে
 
+### Floci-তে যা কাজ করে না (Confirmed না হওয়া পর্যন্ত ✅ লেখা যাবে না)
+
+নতুন service-এর file লেখার আগে Floci support নিশ্চিত করতে হবে। নিচে user testing থেকে confirmed limitations:
+
+| Service / Operation | Floci | কারণ |
+|---------------------|-------|------|
+| EBS `attach-volume` | ❌ | `UnsupportedOperation` |
+| EBS `detach-volume` | ❌ | `UnsupportedOperation` |
+| EBS `modify-volume` | ❌ | `UnsupportedOperation` |
+| EFS `create-file-system` | ❌ | EFS API internally S3 handler-এ route হয় → `InvalidArgument` error |
+| EFS `describe-file-systems` | ❌ | Same reason |
+| EFS `delete-file-system` | ❌ | Same reason |
+| EFS `create-mount-target` | ❌ | Same reason |
+| EC2 User Data execution | ❌ | Floci real VM চালায় না — script execute হয় না |
+| EFS SG `ReferencedGroupInfo` | ⚠️ | Rule তৈরি হয় (`Return: true`) কিন্তু output-এ field দেখায় না |
+
+**নিয়ম:** কোনো operation Floci-তে কাজ করে কিনা নিশ্চিত না জানলে support table-এ ⚠️ দাও এবং user testing-এর জন্য note রাখো। কখনো assume করে ✅ লিখবে না।
+
+### Floci Limitation-এ Footnote Rule (দুই জায়গায় দিতে হবে)
+
+যখন কোনো ধাপে Floci support নেই এবং Real AWS-এ করতে হবে, **দুটো জায়গায়** footnote দিতে হবে:
+
+**জায়গা ১ — Floci section-এ যেখানে আর এগোনো যাচ্ছে না:**
+```markdown
+> ⚠️ **Floci-তে এই ধাপ কাজ করে না।** [কারণ এক লাইনে]।
+> এই ধাপ থেকে **পার্ট ৩ (Real AWS), ধাপ X**-এ যাও।
+```
+
+**জায়গা ২ — Real AWS section-এর শুরুতে:**
+```markdown
+> **কখন করবে:** পার্ট ২-এর ধাপ X ও Y (কী করেছিলে) সফলভাবে শেষ হওয়ার পরেই এই section শুরু হয়।
+```
+
+**উদাহরণ (Day 6 EFS):**
+- জায়গা ১: Part 2-এর ধাপ ৩ (create-file-system) → "Floci-তে কাজ করে না → পার্ট ৩-এ যাও"
+- জায়গা ২: Part 3-এর শুরুতে → "পার্ট ২-এর ধাপ ৩ ও ৪ (EFS তৈরি + Mount Target) শেষে এখানে এসো"
+
 ### ARN Format in Floci
 
 ```
