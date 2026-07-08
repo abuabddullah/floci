@@ -1,0 +1,99 @@
+====================================
+Tutorial Started
+
+Time:               2026-07-08 09:30:30
+Working Directory:  /d/devops/floci
+Git Branch:         feat/day-6
+Log File:           /d/devops/floci/Day6-EFS-floci/Day6-EFS-floci.log
+====================================
+
+
+$ floci start --persist ./floci-data
+Removing stopped container 'floci'...
+Checking image floci/floci:latest (policy: missing)...
+Starting Floci container...
+Container started (3f5f40cd48db)
+Waiting for Floci to be ready...
+Waiting... (29s remaining)   Floci is ready (http://localhost:4566)
+
+$ eval $(floci env)
+
+$ echo $AWS_ENDPOINT_URL
+http://localhost.floci.io:4566
+
+$ aws ec2 create-security-group   --group-name ec2-sg   --description "EC2 Security Group - HTTP and SSH"
+{
+    "GroupId": "sg-df8e80cd122b1c8b9"
+}
+
+$ echo "ec2-GroupId": "sg-df8e80cd122b1c8b9" >Day6-EFS-floci/cred.txt
+
+$ cat Day6-EFS-floci/cred.txt
+ec2-GroupId: sg-df8e80cd122b1c8b9
+
+$ aws ec2 describe-security-groups   --query 'SecurityGroups[?GroupName==`ec2-sg`].GroupId'   --output text
+sg-df8e80cd122b1c8b9
+
+$ aws ec2 authorize-security-group-ingress   --group-id sg-df8e80cd122b1c8b9   --protocol tcp   --port 22   --cidr 0.0.0.0/0
+{
+    "Return": true,
+    "SecurityGroupRules": [
+        {
+            "SecurityGroupRuleId": "sgr-6dcea3287886d17c7",
+            "GroupId": "sg-df8e80cd122b1c8b9",
+            "GroupOwnerId": "000000000000",
+            "IsEgress": false,
+            "IpProtocol": "tcp",
+            "FromPort": 22,
+            "ToPort": 22,
+            "CidrIpv4": "0.0.0.0/0"
+        }
+    ]
+}
+
+$ aws ec2 authorize-security-group-ingress   --group-id sg-df8e80cd122b1c8b9   --protocol tcp   --port 80   --cidr 0.0.0.0/0
+{
+    "Return": true,
+    "SecurityGroupRules": [
+        {
+            "SecurityGroupRuleId": "sgr-2bb04caaaa817909b",
+            "GroupId": "sg-df8e80cd122b1c8b9",
+            "GroupOwnerId": "000000000000",
+            "IsEgress": false,
+            "IpProtocol": "tcp",
+            "FromPort": 80,
+            "ToPort": 80,
+            "CidrIpv4": "0.0.0.0/0"
+        }
+    ]
+}
+
+$ aws ec2 create-security-group   --group-name efs-sg   --description "EFS Security Group - NFS from EC2-SG only"
+{
+    "GroupId": "sg-59922436450182212"
+}
+
+$ echo  "efs-GroupId": "sg-59922436450182212" >> Day6-EFS-floci/cred.txt 
+
+$ cat Day6-EFS-floci/cred.txt 
+ec2-GroupId: sg-df8e80cd122b1c8b9
+efs-GroupId: sg-59922436450182212
+
+$ aws ec2 describe-security-groups   --query 'SecurityGroups[?GroupName==`efs-sg`].GroupId'   --output text
+sg-59922436450182212
+
+$ aws ec2 authorize-security-group-ingress   --group-id sg-59922436450182212   --ip-permissions IpProtocol=tcp,FromPort=2049,ToPort=2049,UserIdGroupPairs=[{GroupId=sg-df8e80cd122b1c8b9}]
+{
+    "Return": true,
+    "SecurityGroupRules": [
+        {
+            "SecurityGroupRuleId": "sgr-bedcf42ff9e61922a",
+            "GroupId": "sg-59922436450182212",
+            "GroupOwnerId": "000000000000",
+            "IsEgress": false,
+            "IpProtocol": "tcp",
+            "FromPort": 2049,
+            "ToPort": 2049
+        }
+    ]
+}
