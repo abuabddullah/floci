@@ -1,0 +1,372 @@
+====================================
+Tutorial Started
+
+Time:               2026-07-15 08:32:31
+Working Directory:  /d/devops/floci
+Git Branch:         feat/day-6
+Log File:           /d/devops/floci/Day8-S3-floci/Day8-S3-floci.log
+====================================
+
+
+$ floci start --persist ./floci-data
+Removing stopped container 'floci'...
+Checking image floci/floci:latest (policy: missing)...
+Starting Floci container...
+Container started (5b1f8a7880f0)
+Waiting for Floci to be ready...
+
+Waiting... (29s remaining)   Floci is ready (http://localhost:4566)
+
+$ eval $(floci env)
+
+$ echo $AWS_ENDPOINT_URL
+http://localhost.floci.io:4566
+
+$ aws s3 mb s3://devops-demo-bucket
+make_bucket: devops-demo-bucket
+
+$ aws s3 ls
+2026-07-15 08:33:28 devops-demo-bucket
+2026-07-02 04:02:26 my-bucket
+
+$ echo "Hello from S3 - version 1" > test.txt
+
+$ rm test.txt 
+
+$ cd Day8-S3-floci/
+
+$ echo "Hello from S3 - version 1" > test.txt
+
+$ cat test.txt 
+Hello from S3 - version 1
+
+$ aws s3 cp test.txt s3://devops-demo-bucket/
+Completed 26 Bytes/26 Bytes (311 Bytes/s) with 1 file(s) remaining
+upload: .\test.txt to s3://devops-demo-bucket/test.txt            
+
+$ aws s3 ls s3://devops-demo-bucket/
+2026-07-15 08:34:21         26 test.txt
+
+$ aws s3 cp s3://devops-demo-bucket/test.txt downloaded.txt
+Completed 26 Bytes/26 Bytes (3.0 KiB/s) with 1 file(s) remaining
+download: s3://devops-demo-bucket/test.txt to .\downloaded.txt  
+
+$ cat downloaded.txt
+Hello from S3 - version 1
+
+$ aws s3api put-bucket-versioning   --bucket devops-demo-bucket   --versioning-configuration Status=Enabled
+
+$ aws s3api get-bucket-versioning --bucket devops-demo-bucket
+{
+    "Status": "Enabled"
+}
+
+$ echo "Hello from S3 - version 2 (modified)" > test.txt
+
+$ cat test.txt 
+Hello from S3 - version 2 (modified)
+
+$ aws s3 cp test.txt s3://devops-demo-bucket/
+Completed 37 Bytes/37 Bytes (402 Bytes/s) with 1 file(s) remaining
+upload: .\test.txt to s3://devops-demo-bucket/test.txt            
+
+$ aws s3api list-object-versions   --bucket devops-demo-bucket   --prefix test.txt
+{
+    "Versions": [
+        {
+            "ETag": "\"e616e0c17a19c9027d827905455756c0\"",
+            "Size": 37,
+            "StorageClass": "STANDARD",
+            "Key": "test.txt",
+            "VersionId": "ddb36ccd-86e4-433b-92a5-b15e74df5b39",
+            "IsLatest": true,
+            "LastModified": "2026-07-15T02:35:40+00:00"
+        }
+    ],
+    "RequestCharged": null,
+    "Prefix": "test.txt"
+}
+
+$ aws s3 rm s3://devops-demo-bucket/test.txt
+delete: s3://devops-demo-bucket/test.txt
+
+$ aws s3api list-object-versions   --bucket devops-demo-bucket   --prefix test.txt
+{
+    "Versions": [
+        {
+            "ETag": "\"e616e0c17a19c9027d827905455756c0\"",
+            "Size": 37,
+            "StorageClass": "STANDARD",
+            "Key": "test.txt",
+            "VersionId": "ddb36ccd-86e4-433b-92a5-b15e74df5b39",
+            "IsLatest": false,
+            "LastModified": "2026-07-15T02:35:40+00:00"
+        }
+    ],
+    "DeleteMarkers": [
+        {
+            "Key": "test.txt",
+            "VersionId": "bfc91905-505e-4f38-9c43-612042a4cb8c",
+            "IsLatest": true,
+            "LastModified": "2026-07-15T02:36:13+00:00"
+        }
+    ],
+    "RequestCharged": null,
+    "Prefix": "test.txt"
+}
+
+$ aws s3api delete-object   --bucket devops-demo-bucket   --key test.txt   --version-id bfc91905-505e-4f38-9c43-612042a4cb8c
+{
+    "DeleteMarker": true,
+    "VersionId": "bfc91905-505e-4f38-9c43-612042a4cb8c"
+}
+
+$ aws s3 ls s3://devops-demo-bucket/
+2026-07-15 08:35:40         37 test.txt
+$ touch lifecycle.json
+
+$ cat lifecycle.json 
+{
+  "Rules": [
+    {
+      "ID": "move-to-glacier",
+      "Status": "Enabled",
+      "Filter": {
+        "Prefix": ""
+      },
+      "Transitions": [
+        {
+          "Days": 30,
+          "StorageClass": "STANDARD_IA"
+        },
+        {
+          "Days": 60,
+          "StorageClass": "GLACIER"
+        }
+      ],
+      "Expiration": {
+        "Days": 365
+      }
+    }
+  ]
+}
+
+$ aws s3api put-bucket-lifecycle-configuration   --bucket devops-demo-bucket   --lifecycle-configuration file://lifecycle.json
+{
+    "TransitionDefaultMinimumObjectSize": "all_storage_classes_128K"
+}
+
+$ aws s3api get-bucket-lifecycle-configuration   --bucket devops-demo-bucket
+{
+    "TransitionDefaultMinimumObjectSize": "all_storage_classes_128K",
+    "Rules": [
+        {
+            "Expiration": {
+                "Days": 365
+            },
+            "ID": "move-to-glacier",
+            "Filter": {
+                "Prefix": ""
+            },
+            "Status": "Enabled",
+            "Transitions": [
+                {
+                    "Days": 30,
+                    "StorageClass": "STANDARD_IA"
+                },
+                {
+                    "Days": 60,
+                    "StorageClass": "GLACIER"
+                }
+            ]
+        }
+    ]
+}
+
+$ touch bucket-policy.json
+cat > bucket-policy.json << 'EOF'
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "AllowReadOnly",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::000000000000:root"
+            },
+            "Action": [
+                "s3:GetObject",
+                "s3:ListBucket"
+            ],
+            "Resource": [
+                "arn:aws:s3:::devops-demo-bucket",
+                "arn:aws:s3:::devops-demo-bucket/*"
+            ]
+        }
+    ]
+}
+$ cat bucket-policy.json 
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "AllowReadOnly",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::000000000000:root"
+      },
+      "Action": ["s3:GetObject", "s3:ListBucket"],
+      "Resource": [
+        "arn:aws:s3:::devops-demo-bucket",
+        "arn:aws:s3:::devops-demo-bucket/*"
+      ]
+    }
+  ]
+}
+
+$ aws s3api put-bucket-policy   --bucket devops-demo-bucket   --policy file://bucket-policy.json
+
+$ aws s3api get-bucket-policy   --bucket devops-demo-bucket   --output text
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "AllowReadOnly",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::000000000000:root"
+      },
+      "Action": ["s3:GetObject", "s3:ListBucket"],
+      "Resource": [
+        "arn:aws:s3:::devops-demo-bucket",
+        "arn:aws:s3:::devops-demo-bucket/*"
+      ]
+    }
+  ]
+}
+
+
+$ aws s3api delete-objects   --bucket devops-demo-bucket   --delete "$(aws s3api list-object-versions \
+    --bucket devops-demo-bucket \
+    --query '{Objects: Versions[].{Key:Key,VersionId:VersionId}}' \
+    --output json)"
+{
+    "Deleted": [
+        {
+            "Key": "test.txt",
+            "DeleteMarker": true,
+            "DeleteMarkerVersionId": "eabac081-7f9a-4e87-bfd0-f82ce918d62b"
+        }
+    ]
+}
+
+$ aws s3 rb s3://devops-demo-bucket --force
+remove_bucket: devops-demo-bucket
+
+$ touch index.html
+
+$ touch index.html 
+
+$ cat index.html 
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>DevOps Steps</title>
+</head>
+
+<body>
+    <h1>Hello from S3 Static Website</h1>
+    <p>Hosted on AWS S3</p>
+</body>
+
+</html>
+$ touch error.html 
+
+$ cat error.html 
+<!DOCTYPE html>
+<html>
+
+<body>
+    <h1>Error: Page not found</h1>
+</body>
+
+</html>
+$ aws s3 mb s3://ooaaow-static-site --region us-east-1
+make_bucket: ooaaow-static-site
+
+$ aws s3api put-public-access-block   --bucket ooaaow-static-site   --public-access-block-configuration '{"BlockPublicAcls":false,"IgnorePublicAcls":false,"BlockPublicPolicy":false,"RestrictPublicBuckets":false}'
+
+$ aws s3 cp index.html s3://ooaaow-static-site/
+Completed 177 Bytes/177 Bytes (1.0 KiB/s) with 1 file(s) remaining
+upload: .\index.html to s3://ooaaow-static-site/index.html        
+
+$ aws s3 cp error.html s3://ooaaow-static-site/
+Completed 89 Bytes/89 Bytes (1.2 KiB/s) with 1 file(s) remaining
+upload: .\error.html to s3://ooaaow-static-site/error.html      
+
+$ aws s3api put-bucket-website   --bucket ooaaow-static-site   --website-configuration '{
+    "IndexDocument": {"Suffix": "index.html"},
+    "ErrorDocument": {"Key": "error.html"}
+  }'
+
+$ touch website-policy.json 
+
+$ cat website-policy.json 
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "PublicRead",
+      "Effect": "Allow",
+      "Principal": "*",
+      "Action": "s3:GetObject",
+      "Resource": "arn:aws:s3:::ooaaow-static-site/*"
+    }
+  ]
+}
+
+$ aws s3api put-bucket-policy   --bucket ooaaow-static-site   --policy file://website-policy.json
+
+$ curl http://localhost:4566/ooaaow-static-site/index.html
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+100   177  100   177    0     0  17603      0 --:--:-- --:--:-- --:--:-- 19666<!DOCTYPE html>
+<html>
+
+<head>
+    <title>DevOps Steps</title>
+</head>
+
+<body>
+    <h1>Hello from S3 Static Website</h1>
+    <p>Hosted on AWS S3</p>
+</body>
+
+</html>
+
+$ aws s3 cp s3://ooaaow-static-site/index.html -
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>DevOps Steps</title>
+</head>
+
+<body>
+    <h1>Hello from S3 Static Website</h1>
+    <p>Hosted on AWS S3</p>
+</body>
+
+</html>
+$ echo "http://ooaaow-static-site.s3-website-us-east-1.amazonaws.com"
+http://ooaaow-static-site.s3-website-us-east-1.amazonaws.com
+
+$ stoplog
+
+====================================
+Tutorial Finished
+Time: 2026-07-15 10:08:12
+====================================

@@ -1,4 +1,29 @@
 {
+  "000000000000/ooaaow-static-site" : {
+    "name" : "ooaaow-static-site",
+    "creationDate" : "2026-07-15T03:54:44.416609468Z",
+    "versioningStatus" : null,
+    "loggingConfiguration" : null,
+    "tags" : { },
+    "notificationConfiguration" : null,
+    "objectLockEnabled" : false,
+    "defaultRetention" : null,
+    "policy" : "{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Sid\": \"PublicRead\",\n      \"Effect\": \"Allow\",\n      \"Principal\": \"*\",\n      \"Action\": \"s3:GetObject\",\n      \"Resource\": \"arn:aws:s3:::ooaaow-static-site/*\"\n    }\n  ]\n}\n",
+    "corsConfiguration" : null,
+    "lifecycleConfiguration" : null,
+    "transitionDefaultMinimumObjectSize" : null,
+    "acl" : null,
+    "encryptionConfiguration" : null,
+    "publicAccessBlockConfiguration" : "<PublicAccessBlockConfiguration xmlns=\"http://s3.amazonaws.com/doc/2006-03-01/\"><BlockPublicAcls>false</BlockPublicAcls><IgnorePublicAcls>false</IgnorePublicAcls><BlockPublicPolicy>false</BlockPublicPolicy><RestrictPublicBuckets>false</RestrictPublicBuckets></PublicAccessBlockConfiguration>",
+    "ownershipControlsConfiguration" : null,
+    "requestPaymentPayer" : null,
+    "region" : "us-east-1",
+    "websiteConfiguration" : {
+      "indexDocument" : "index.html",
+      "errorDocument" : "error.html"
+    },
+    "versioningEnabled" : false
+  },
   "000000000000/my-bucket" : {
     "name" : "my-bucket",
     "creationDate" : "2026-07-01T22:02:26.019061812Z",
